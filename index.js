@@ -1,7 +1,8 @@
 const input = document.querySelector("input");
-const greeting = document.getElementsByClassName(".greeting");
-const theTime = document.querySelector("span");
-const newGreeting = document.getElementsByClassName(".morning-greeting");
+const hello = document.getElementById("hello");
+const clock = document.getElementById("clock");
+const greeting = document.getElementById("greeting-text");
+const welcome = document.getElementById("welcome");
 
 let userName = localStorage.getItem("name");
 
@@ -12,16 +13,16 @@ if (userName === null) {
 input.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     userName = event.target.value;
-    getTime();
-    theTime.innerHTML = `Good ${timelyGreet}, ${userName}.`;
-    input.remove()
     localStorage.setItem("name", userName);
+    window.location.reload()
   }
 });
 } else {
-    input.remove()
+    welcome.remove()
     getTime()
-    theTime.innerHTML = `Good ${timelyGreet}, ${userName}.`;
+    greeting.innerHTML = `Good ${timelyGreet}, ${userName}`;
+    clock.style.display = 'block'
+    clock.innerHTML = time
 }
 
 function getTime() {
@@ -54,6 +55,10 @@ function getTime() {
 
   console.log(`Good ${timelyGreet}, ${userName}`);
 }
+
+   
+
+
 console.log(`${userName}`)
 //  window.location.reload()
 // localStorage.clear();

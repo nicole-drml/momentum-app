@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Momentum App</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="clock-greeting">
-          <span class="clock">10:00</span>
-        <span class="greeting-text">Good evening, </span>
-      </div>
-      <div class="greeting-container">
-        <div class="focus">
-          <span class="focus-question"> What is your main focus for today?</span
-          ><br />
-          <input class="focus-answer" type="text" autocomplete="off" />
+</head>
+<body>
+    <section id="welcome">
+        <div id="container"> 
+            <span id="hello">Hello, what's your name?</span>
+                <input id="name" type="text" autofocus="on" autocomplete="off"></input>
         </div>
-      </div>
-    </div>
-  </body>
+        <span></span>
+    </section>
+    <section id="momentum">
+        <div id='container2'>
+            <div id="clock-greeting" class="momentum">
+                <span id="clock" class="momentum"></span>
+                <span id="greeting-text"></span>
+            </div>
+            <div id="greeting-container">
+                <div id="focus">
+                  <span id="focus-question"> What is your main focus for today?</span
+                  ><br />
+                  <input id="focus-answer" type="text" autocomplete="off" />
+                </div>
+              </div>
+        </div>
+    </section>
+</body>
+<script src="index.js"></script>
 </html>
