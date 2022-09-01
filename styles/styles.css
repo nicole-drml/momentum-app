@@ -1,0 +1,168 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../assets/background-6pm.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: aliceblue;
+}
+
+#welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+#welcome #container {
+  display: flex;
+  flex-direction: column;
+}
+#welcome #container #hello {
+  align-self: center;
+  font-size: 2em;
+  opacity: 1;
+}
+#welcome #container #name {
+  align-self: center;
+  text-align: center;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid white;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 1.7em;
+  color: rgba(240, 248, 255, 0.9);
+  font-weight: bold;
+}
+
+#momentum {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  height: 100%;
+  width: 100%;
+}
+#momentum #container2 {
+  text-align: center;
+  grid-row: 3/6;
+  margin-top: -45px;
+}
+#momentum #container2 #clock-greeting #clock {
+  font-size: 1050%;
+  font-weight: 500;
+  letter-spacing: -5px;
+}
+#momentum #container2 #clock-greeting #greeting-text {
+  display: block;
+  font-size: 3rem;
+  font-weight: 500;
+  margin-top: -10px;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#momentum #container2 #focus-container {
+  margin-top: 70px;
+}
+#momentum #container2 #focus-container #focus {
+  margin-top: 20px;
+}
+#momentum #container2 #focus-container #focus #focus-question {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+#momentum #container2 #focus-container #focus #focus-answer {
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid white;
+  margin-top: 10px;
+  width: 530px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(240, 248, 255, 0.95);
+  text-align: center;
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: 0.3px;
+}
+
+#task-container {
+  display: block;
+  position: absolute;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  right: 10px;
+  bottom: 55px;
+}
+#task-container legend {
+  margin-bottom: 20px;
+}
+#task-container .tasks {
+  display: flex;
+  list-style-type: none;
+}
+#task-container .tasks .task {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+#task-container .tasks .task .task-checkbox {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: rgb(255, 255, 255);
+  height: 12px;
+  width: 12px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+#task-container .tasks .task .task-checkbox:after {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  content: "✓";
+  font-weight: 300;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  color: white;
+  display: none;
+}
+#task-container .tasks .task .task-checkbox:hover {
+  background-color: rgb(81, 82, 83);
+}
+#task-container .tasks .task .task-checkbox:checked {
+  background-color: rgb(58, 60, 58);
+}
+#task-container .tasks .task .task-checkbox:checked:after {
+  display: block;
+}
+#task-container .tasks .task-text {
+  width: 70%;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+}
+#task-container .tasks .checkbox-button {
+  display: none;
+}
+#task-container .tasks .task-text:focus ~ .checkbox-button {
+  display: block;
+}/*# sourceMappingURL=styles.css.map */

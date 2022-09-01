@@ -1,0 +1,33 @@
+
+#welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  
+    #container {
+      display: flex;
+      flex-direction: column;
+  
+      #hello {
+        align-self: center;
+        font-size: 2em;
+        opacity: 1;
+      }
+  
+      #name {
+        align-self: center;
+        text-align: center;
+        background: none;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid white;
+        width: 100%;
+        margin-top: 20px;
+        font-size: 1.7em;
+        color: rgb(240, 248, 255, 0.9);
+        font-weight: bold;
+      }
+    }
+  }
