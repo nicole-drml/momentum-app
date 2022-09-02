@@ -8,7 +8,7 @@
     #container2 {
       text-align: center;
       grid-row: 3/6;
-      margin-top: -45px;
+      margin-top: -60px;
   
       #clock-greeting {
         #clock {
@@ -30,7 +30,7 @@
       }
   
       #focus-container {
-        margin-top: 70px;
+        margin-top: 25px;
   
         #focus {
           margin-top: 20px;
@@ -46,15 +46,15 @@
             outline: none;
             border: none;
             border-bottom: 2px solid white;
-            margin-top: 10px;
+            margin-top: 8px;
             width: 530px;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: rgb(240, 248, 255, 0.95);
+            color: rgb(255, 255, 255, .95);
             text-align: center;
             font-weight: 500;
             font-size: 2rem;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.35px;
           }
         }
       }

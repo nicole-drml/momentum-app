@@ -7,13 +7,14 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../assets/background-6pm.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  color: aliceblue;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 #welcome {
@@ -55,7 +56,7 @@ body {
 #momentum #container2 {
   text-align: center;
   grid-row: 3/6;
-  margin-top: -45px;
+  margin-top: -60px;
 }
 #momentum #container2 #clock-greeting #clock {
   font-size: 1050%;
@@ -73,7 +74,7 @@ body {
   text-overflow: ellipsis;
 }
 #momentum #container2 #focus-container {
-  margin-top: 70px;
+  margin-top: 25px;
 }
 #momentum #container2 #focus-container #focus {
   margin-top: 20px;
@@ -88,15 +89,27 @@ body {
   outline: none;
   border: none;
   border-bottom: 2px solid white;
-  margin-top: 10px;
+  margin-top: 8px;
   width: 530px;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: rgba(240, 248, 255, 0.95);
+  color: rgba(255, 255, 255, 0.95);
   text-align: center;
   font-weight: 500;
   font-size: 2rem;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.35px;
+}
+
+#todo-span {
+  padding-right: 25px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(240, 248, 255, 0.5);
+}
+
+#todo-span:hover {
+  cursor: pointer;
+  color: rgba(240, 248, 255, 0.9);
 }
 
 #task-container {
@@ -106,9 +119,9 @@ body {
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.6);
   right: 10px;
-  bottom: 55px;
+  bottom: 65px;
 }
-#task-container legend {
+#task-container #tasks-legend {
   margin-bottom: 20px;
 }
 #task-container .tasks {
@@ -165,4 +178,113 @@ body {
 }
 #task-container .tasks .task-text:focus ~ .checkbox-button {
   display: block;
+}
+
+#displayed-quote-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  height: 50px;
+  bottom: 2px;
+  width: 100%;
+}
+#displayed-quote-container #quotes-settings {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 25px;
+  color: rgba(240, 248, 255, 0.5);
+  font-size: larger;
+  display: none;
+}
+#displayed-quote-container #quotes-settings:hover {
+  color: rgba(240, 248, 255, 0.9);
+}
+#displayed-quote-container #displayed-quote {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.1rem;
+  width: 70%;
+  display: -webkit-box;
+  line-height: 1.3em;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#quotes-legend {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 10px;
+  bottom: 340px;
+  width: 350px;
+  justify-self: start;
+}
+
+.fa-pen-to-square {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 5px;
+  margin-top: 5px;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(240, 248, 255, 0.5);
+  font-size: 20px;
+}
+
+.fa-pen-to-square:hover {
+  color: rgba(240, 248, 255, 0.9);
+}
+
+#quotes-pop-up {
+  display: none;
+  position: absolute;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  left: 10px;
+  bottom: 65px;
+  width: 350px;
+  height: 280px;
+  overflow-y: auto;
+}
+#quotes-pop-up #quotes-storage {
+  list-style-type: none;
+}
+
+#new-quote-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  margin-left: 10px;
+  margin-top: 375px;
+  width: 350px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  gap: 10px;
+  position: absolute;
+  visibility: hidden;
+}
+#new-quote-container #new-quote-input {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  color: white;
+  width: 100%;
+  padding: 3px;
+  font-weight: 200;
 }/*# sourceMappingURL=styles.css.map */
