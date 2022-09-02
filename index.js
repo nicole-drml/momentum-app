@@ -4,15 +4,21 @@ const clock = document.getElementById("clock");
 const greeting = document.getElementById("greeting-text");
 const welcome = document.getElementById("welcome");
 
+const focusContainer = document.getElementById("focus");
 const focusQuestion = document.getElementById("focus-question");
-const focusAnswer = document.getElementById("focus-answer");
+const focusInput = document.getElementById("focus-input");
 
+const quotesStorage = document.getElementById("quotes-storage");
 const displayedQuote = document.getElementById("displayed-quote");
 const quotesSettings = document.getElementById("quotes-settings");
 const quotesLegend = document.getElementById("quotes-legend");
 
+
+const ellipsis = document.createElement("i")
+ellipsis.className = "fa-solid fa-ellipsis"
+
 let userName = localStorage.getItem("name");
-let focus = localStorage.getItem("focus-answer");
+let focus = localStorage.getItem("focus");
 
 let time = "";
 let timelyGreet = "";
@@ -30,9 +36,8 @@ input.addEventListener("keypress", (event) => {
     getTime()
     greeting.innerHTML = `Good ${timelyGreet}, ${userName}.`;
     quotesSettings.style.display = "block"
-    //setInterval(getTime, 1000);
+    setInterval(getTime, 1000);
 }
-
 
 function getTime() {
   var date = new Date();
@@ -51,6 +56,11 @@ function getTime() {
   if (hour > 12) {
     hour -= 12;
   }
+
+  if (hour === 0) {
+    hour = 12;
+  }
+
   if (minute < 10) {
     minute = "0" + minute;
   }
@@ -59,21 +69,105 @@ function getTime() {
   clock.innerHTML = time
 }
 
+//focus today
+
+const today = document.createElement("h1");
+const focusAnswer = document.createElement("span");
+const checkFocus = document.createElement("input");
+const focusEllipsis = ellipsis
+const greatJob = document.createElement("h1");
+
+focusContainer.append(today)
+focusContainer.append(checkFocus)
+focusContainer.append(focusAnswer)
+focusContainer.append(focusEllipsis)
+focusContainer.append(greatJob)
+
+today.style.marginTop = "15px"
+today.style.fontSize = "20px"
+
+checkFocus.type = "checkbox"
+checkFocus.style.marginRight = "20px"
+checkFocus.style.transform = "scale(1.5)"
+checkFocus.style.opacity = "0"
+checkFocus.style.accentColor = "grey";
+checkFocus.style.cursor = "pointer";
+
+focusAnswer.style.fontSize = "40px"
+focusAnswer.style.lineHeight = "60px"
+
+focusEllipsis.style.marginLeft = "20px"
+focusEllipsis.style.fontSize = "20px"
+focusEllipsis.style.opacity = "0"
+focusEllipsis.style.cursor = "pointer";
+focusEllipsis.style.padding = "6px";
+
+greatJob.innerHTML = "Great job!"
+greatJob.style.fontSize = "20px"
+greatJob.style.fontWeight = "300"
+greatJob.style.letterSpacing = "1px"
+greatJob.style.opacity = "0"
+
+
+checkFocus.addEventListener("change", crossOut);
+
+function crossOut() {
+  if (checkFocus.checked) {
+    focusAnswer.style.textDecoration = "line-through"
+    focusAnswer.style.opacity = ".3"  
+    greatJob.style.opacity = "1"
+  } else {
+    focusAnswer.style.textDecoration = "none"
+    focusAnswer.style.opacity = "1"  
+    greatJob.style.opacity = "0"
+  }
+}
+
+
+focusContainer.addEventListener("mouseover", higherOpacity);
+focusContainer.addEventListener("mouseout", lowerOpacity);
+
+function lowerOpacity() {
+  focusEllipsis.style.opacity = "0";
+  checkFocus.style.opacity = "0";
+}
+
+function higherOpacity() {
+  focusEllipsis.style.opacity = "1";
+  checkFocus.style.opacity = "1";
+}
+
+
+focusEllipsis.addEventListener("mouseover", higherBackground);
+focusEllipsis.addEventListener("mouseout", lowerBackground);
+
+function lowerBackground() {
+  focusEllipsis.style.background = "none";
+}
+
+function higherBackground() {
+  focusEllipsis.style.backgroundColor = "rgb(240, 248, 255, 0.2)";
+  focusEllipsis.style.borderRadius = "50px"
+}
+
+
 
 if (focus === null) {
-  focusAnswer.addEventListener("keypress", (event) => {
+  focusInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
       focus = event.target.value;
-      localStorage.setItem("focus-answer", focus);
+      localStorage.setItem("focus", focus);
       window.location.reload()
     }
   });
   } else {
-      focusAnswer.remove()
-      focusQuestion.innerHTML = `Focus on ${focus}.`;
+      focusInput.remove()
+      focusQuestion.remove()
+      today.innerHTML = `TODAY`;
+      focusAnswer.innerHTML = `${focus}`;
+
   }   
  
-
 
 var quotes = [
   {quote: "A ship in harbor is safe, but that is not what ships are built for.", quoteBy: "John A Shedd"},
@@ -90,8 +184,6 @@ var quotes = [
   //{quote: quoteBy:}
 ]
 
-
-const quotesStorage = document.getElementById("quotes-storage");
 
 for (let i = 0; i < quotes.length; i++) {
   const item = quotes[i]
@@ -148,8 +240,6 @@ function randomNum() {
 }
 }
 
-
-
 quotesSettings.addEventListener("click", togglePop)
 function togglePop() {
   if (quotesPopUp.style.display === "block" && quotesLegend.style.display === "block") {
@@ -162,11 +252,9 @@ function togglePop() {
   }
 }
 
-
-
-
 const quotesPopUp = document.getElementById("quotes-pop-up");
 const addQuoteContainer = document.getElementById("new-quote-container");
+
 
 const addQuoteButton = document.getElementById("add-quote-button");
 
@@ -182,5 +270,7 @@ function newQuotePop() {
 console.log(Math.random())
 console.log(`${userName}`)
 console.log(localStorage)
+console.log(localStorage.name)
+console.log(focus)
 //  window.location.reload()
 // localStorage.clear();
