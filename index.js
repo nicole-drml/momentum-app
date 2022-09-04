@@ -13,6 +13,8 @@ const displayedQuote = document.getElementById("displayed-quote");
 const quotesSettings = document.getElementById("quotes-settings");
 const quotesLegend = document.getElementById("quotes-legend");
 
+const taskContainer = document.getElementById("task-container ");
+const toDoSpan = document.getElementById("todo-span");
 
 const ellipsis = document.createElement("i")
 ellipsis.className = "fa-solid fa-ellipsis"
@@ -23,7 +25,10 @@ let focus = localStorage.getItem("focus");
 let time = "";
 let timelyGreet = "";
 
+let displayQuote = ""
+
 if (userName === null) {
+  toDoSpan.style.visibility = "hidden";
 input.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     userName = event.target.value;
@@ -36,14 +41,15 @@ input.addEventListener("keypress", (event) => {
     getTime()
     greeting.innerHTML = `Good ${timelyGreet}, ${userName}.`;
     quotesSettings.style.display = "block"
+    toDoSpan.style.visibility = "visible"
     setInterval(getTime, 1000);
+    displayedQuote.innerHTML = displayQuote 
 }
 
 function getTime() {
   var date = new Date();
   var hour = date.getHours();
   var minute = date.getMinutes();
-  var second = date.getSeconds();
 
   if (hour >= 0 && hour < 12) {
     timelyGreet = "morning";
@@ -158,6 +164,7 @@ if (focus === null) {
       focus = event.target.value;
       localStorage.setItem("focus", focus);
       window.location.reload()
+      checkFocus.style.display = "none"
     }
   });
   } else {
@@ -165,22 +172,21 @@ if (focus === null) {
       focusQuestion.remove()
       today.innerHTML = `TODAY`;
       focusAnswer.innerHTML = `${focus}`;
+      checkFocus.style.display = "block"
 
   }   
  
 
 var quotes = [
   {quote: "A ship in harbor is safe, but that is not what ships are built for.", quoteBy: "John A Shedd"},
-  {quote: "Chains of habit are too light to be felt until they are too heavy to be broken.", quoteBy: "Warren Buffet"},
   {quote: "Mistakes are always forgivable, if one has the courage to admit them.", quoteBy: "Bruce Lee"},
   {quote: "Nothing is particularly hard if you divide them in small task.", quoteBy: "Henry Ford"},
   {quote: "Life can only be understood backwards; but it must be lived forwards.", quoteBy: "Soren Kierkegaard"},
-  {quote: "Happiness is not something ready made. It comes from your own actions.", quoteBy: "Dalai Lama"},
   {quote: "Inspiration exists, but it has to find you working.", quoteBy: "Pablo Picasso"},
-  {quote: "The greatest work that kindness does to others is that it makes them kind themselves.", quoteBy: "Amelia Earheart"},{quote: "Judge your success by what you had to give up in order to get it.", quoteBy: "Dalai Lama"},
+  {quote: "The greatest work that kindness does to others is that it makes them kind themselves.", quoteBy: "Amelia Earheart"},
+  {quote: "Judge your success by what you had to give up in order to get it.", quoteBy: "Dalai Lama"},
   {quote: "Have a heart that never hardens, and a temper that never tires, and a touch that never hurts.", quoteBy: "Charles Dickens"},
   {quote: "There is nothing noble about being better than your fellow man. Only being better than your former self.", quoteBy: "Ernest Hemingway"},
-  {quote: "You can't connect the dots looking forward, you can only connect them looking backward. So you have to trust that the dots will somehow connect in your future. You have to trust in something -- your gut, destiny, life, karma, whatever.", quoteBy: "Steve Jobs"},
   //{quote: quoteBy:}
 ]
 
@@ -191,53 +197,65 @@ for (let i = 0; i < quotes.length; i++) {
   const newLi = document.createElement("li");
   const quote = document.createElement("span");
   const quoteBy = document.createElement("span");
-  const deleteQuote = document.createElement("i")
+  const blockQuote = document.createElement("i")
 
   quote.textContent = `"${item.quote}"`;
   quoteBy.textContent = `- ${item.quoteBy}`;
-  deleteQuote.className = "fa-solid fa-ban ";
+  blockQuote.className = "fa-solid fa-ban ";
 
   newLi.style.marginBottom = "12px"
   quoteBy.style.fontSize = "12px"
-  deleteQuote.style.fontSize = "15px"
-  deleteQuote.style.marginLeft = "10px"
-  deleteQuote.style.visibility = "hidden"
-  deleteQuote.style.opacity = ".5"
-  deleteQuote.style.cursor = "pointer"
+  blockQuote.style.fontSize = "15px"
+  blockQuote.style.marginLeft = "10px"
+  blockQuote.style.visibility = "hidden"
+  blockQuote.style.opacity = ".5"
+  blockQuote.style.cursor = "pointer"
 
   newLi.append(quote)
   newLi.append(quoteBy);
-  newLi.appendChild(deleteQuote);
+  newLi.appendChild(blockQuote);
 
   quotesStorage.append(newLi);
 
-  displayedQuote.innerHTML =`"${(quotes[randomNum()].quote)}"`
 
   newLi.addEventListener("mouseover", showSettings);
   newLi.addEventListener("mouseout", hideSettings);
 
 function showSettings() {
-  deleteQuote.style.visibility = "visible";
+  blockQuote.style.visibility = "visible";
 }
 
 function hideSettings() {
-  deleteQuote.style.visibility = "hidden";
+  blockQuote.style.visibility = "hidden";
 }
 
-deleteQuote.addEventListener("mouseover", higherOpacity);
-deleteQuote.addEventListener("mouseout", lowerOpacity);
+blockQuote.addEventListener("mouseover", higherOpacity);
+blockQuote.addEventListener("mouseout", lowerOpacity);
 
 function lowerOpacity() {
-  deleteQuote.style.opacity = ".5";
+  blockQuote.style.opacity = ".5";
 }
 
 function higherOpacity() {
-  deleteQuote.style.opacity = "1";
+  blockQuote.style.opacity = "1";
+}
+
+blockQuote.addEventListener("click", disableQuote);
+function disableQuote() {
+  if (quote.style.opacity === "1") {
+    quote.style.opacity = ".5";
+    quoteBy.style.opacity = ".5";
+  } else {
+    quote.style.opacity = "1";
+    quoteBy.style.opacity = "1";
+  }
 }
 
 function randomNum() {
   return Math.floor(Math.random() * (quotes.length));
 }
+
+displayQuote = `"${(quotes[randomNum()].quote)}"`
 }
 
 quotesSettings.addEventListener("click", togglePop)
