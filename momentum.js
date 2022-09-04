@@ -1,10 +1,6 @@
-const ellipsis = document.createElement("i");
-ellipsis.className = "fa-solid fa-ellipsis";
+import { greeting, userName } from "./welcome.js";
 
 let focus = localStorage.getItem("focus");
-
-//dsdasdasd
-
 const focusContainer = document.getElementById("focus");
 const focusQuestion = document.getElementById("focus-question");
 const focusInput = document.getElementById("focus-input");
@@ -46,7 +42,7 @@ function createMomentumElements() {
   const today = document.createElement("h1");
   const focusAnswer = document.createElement("span");
   const checkFocus = document.createElement("input");
-  const focusEllipsis = ellipsis;
+  const ellipsis = document.createElement("i");
   const greatJob = document.createElement("h1");
 
   today.style.marginTop = "15px";
@@ -62,11 +58,13 @@ function createMomentumElements() {
   focusAnswer.style.fontSize = "40px";
   focusAnswer.style.lineHeight = "60px";
 
-  focusEllipsis.style.marginLeft = "20px";
-  focusEllipsis.style.fontSize = "20px";
-  focusEllipsis.style.opacity = "0";
-  focusEllipsis.style.cursor = "pointer";
-  focusEllipsis.style.padding = "6px";
+
+  ellipsis.className = "fa-solid fa-ellipsis";
+  ellipsis.style.marginLeft = "20px";
+  ellipsis.style.fontSize = "20px";
+  ellipsis.style.opacity = "0";
+  ellipsis.style.cursor = "pointer";
+  ellipsis.style.padding = "6px";
 
   greatJob.innerHTML = "Great job!";
   greatJob.style.fontSize = "20px";
@@ -77,7 +75,7 @@ function createMomentumElements() {
   focusContainer.append(today);
   focusContainer.append(checkFocus);
   focusContainer.append(focusAnswer);
-  focusContainer.append(focusEllipsis);
+  focusContainer.append(ellipsis);
   focusContainer.append(greatJob);
 
   checkFocus.addEventListener("change", crossOut);
@@ -102,7 +100,7 @@ function createMomentumElements() {
 
   function higherBackground() {
     ellipsis.style.backgroundColor = "rgb(240, 248, 255, 0.2)";
-    focusEllipsis.style.borderRadius = "50px";
+    ellipsis.style.borderRadius = "50px";
   }
 
   if (focus === null) {
@@ -124,14 +122,41 @@ function createMomentumElements() {
   }
 
   function lowerOpacity() {
-    focusEllipsis.style.opacity = "0";
+    ellipsis.style.opacity = "0";
     checkFocus.style.opacity = "0";
   }
 
   function higherOpacity() {
-    focusEllipsis.style.opacity = "1";
+    ellipsis.style.opacity = "1";
     checkFocus.style.opacity = "1";
   }
 }
 
-export { getTime, time, timelyGreet, createMomentumElements };
+
+
+function clearLocalName() {
+greeting.style.cursor= "pointer"
+
+greeting.addEventListener("mouseover", lowerOpacity);
+greeting.addEventListener("mouseout", higherOpacity);
+
+function lowerOpacity() {
+  greeting.style.opacity = "0.6";
+}
+
+function higherOpacity() {
+  greeting.style.opacity = "0.95";
+}
+
+
+greeting.addEventListener("click", clearLocalStorage)
+
+function clearLocalStorage() {
+  localStorage.clear()
+  window.location.reload()
+}
+
+}
+
+
+export { getTime, time, timelyGreet, createMomentumElements, clearLocalName };

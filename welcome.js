@@ -1,27 +1,15 @@
 import { getTime, time, timelyGreet } from "./momentum.js";
+import { quotesSettings } from "./quotes.js";
 
-// dsfd
-const quotesStorage = document.getElementById("quotes-storage");
-const quotesLegend = document.getElementById("quotes-legend");
-const newQuoteInput = document.getElementById("new-quote-input");
-
-const ellipsis = document.createElement("i");
-ellipsis.className = "fa-solid fa-ellipsis";
-
-//dsad
 let displayedQuote = document.getElementById("displayed-quote");
-const quotesSettings = document.getElementById("quotes-settings");
 
 const toDoBtn = document.getElementById("todo-button");
 
 let userName = localStorage.getItem("name");
-let focus = localStorage.getItem("focus");
 
 const nameInput = document.querySelector("input");
-const hello = document.getElementById("hello");
-const clock = document.getElementById("clock");
-const greeting = document.getElementById("greeting-text");
 const welcome = document.getElementById("welcome");
+const greeting = document.getElementById("greeting-text");
 
 function getUsername() {
   if (userName === null) {
@@ -45,4 +33,4 @@ function getUsername() {
   }
 }
 
-export { toDoBtn, getUsername };
+export { toDoBtn, userName, getUsername, displayedQuote, greeting};

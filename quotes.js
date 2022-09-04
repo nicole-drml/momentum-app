@@ -1,24 +1,11 @@
+import {displayedQuote} from "./welcome.js";
+
 const quotesStorage = document.getElementById("quotes-storage");
 const quotesSettings = document.getElementById("quotes-settings");
 const quotesLegend = document.getElementById("quotes-legend");
 const newQuoteInput = document.getElementById("new-quote-input");
 
-const toDoBtn = document.getElementById("todo-button");
-
-const ellipsis = document.createElement("i");
-ellipsis.className = "fa-solid fa-ellipsis";
-
-let userName = localStorage.getItem("name");
-let focus = localStorage.getItem("focus");
-
-let time = "";
-let timelyGreet = "";
-
-// dwcd
-
 const addQuoteContainer = document.getElementById("new-quote-container");
-
-let displayedQuote = document.getElementById("displayed-quote");
 
 const quotes = [
   {
@@ -149,9 +136,13 @@ function quotesPopFunction() {
       quotesPopUp.style.display = "none";
       quotesLegend.style.display = "none";
       addQuoteContainer.style.visibility = "hidden";
+      quotesSettings.style.transitionDuration = "1000ms"
+      quotesSettings.style.color = "rgb(240, 248, 255, 0.5)"
     } else {
       quotesPopUp.style.display = "block";
       quotesLegend.style.display = "block";
+      quotesSettings.style.transitionDuration = "1000ms"
+      quotesSettings.style.color = "rgb(240, 248, 255, 0.9)"
     }
   }
 }
@@ -176,4 +167,5 @@ export {
   quotesPopFunction,
   addQuoteFunction,
   addQuoteContainer,
+  quotesSettings
 };

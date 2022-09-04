@@ -17,10 +17,14 @@ width: 100%;
     color: rgb(240, 248, 255, 0.5);
     font-size: larger;
     display: none;
+    transform: rotate(0deg);
+    transition-duration: 1000ms;
 }
 
 #quotes-settings:hover {
     color: rgb(240, 248, 255, 0.9);
+    transform: rotate(45deg);
+    transition-duration: 1000ms;
     }
 
 #displayed-quote {
