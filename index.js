@@ -13,8 +13,8 @@ const displayedQuote = document.getElementById("displayed-quote");
 const quotesSettings = document.getElementById("quotes-settings");
 const quotesLegend = document.getElementById("quotes-legend");
 
-const taskContainer = document.getElementById("task-container ");
-const toDoSpan = document.getElementById("todo-span");
+const taskContainer = document.getElementById("task-container");
+const toDoBtn = document.getElementById("todo-button");
 
 const ellipsis = document.createElement("i")
 ellipsis.className = "fa-solid fa-ellipsis"
@@ -28,7 +28,7 @@ let timelyGreet = "";
 let displayQuote = ""
 
 if (userName === null) {
-  toDoSpan.style.visibility = "hidden";
+  toDoBtn.style.visibility = "hidden";
 input.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
     userName = event.target.value;
@@ -41,7 +41,7 @@ input.addEventListener("keypress", (event) => {
     getTime()
     greeting.innerHTML = `Good ${timelyGreet}, ${userName}.`;
     quotesSettings.style.display = "block"
-    toDoSpan.style.visibility = "visible"
+    toDoBtn.style.visibility = "visible"
     setInterval(getTime, 1000);
     displayedQuote.innerHTML = displayQuote 
 }
@@ -172,10 +172,11 @@ if (focus === null) {
       focusQuestion.remove()
       today.innerHTML = `TODAY`;
       focusAnswer.innerHTML = `${focus}`;
-      checkFocus.style.display = "block"
+      checkFocus.style.display = "block"  
+}
+  
 
-  }   
- 
+  
 
 var quotes = [
   {quote: "A ship in harbor is safe, but that is not what ships are built for.", quoteBy: "John A Shedd"},
@@ -258,12 +259,24 @@ function randomNum() {
 displayQuote = `"${(quotes[randomNum()].quote)}"`
 }
 
+
+toDoBtn.addEventListener("click", showTask)
+
+function showTask() {
+  if (taskContainer.style.display === "block") {
+    taskContainer.style.display = "none";
+  } else {
+    taskContainer.style.display = "block";
+  }
+}
+
+
 quotesSettings.addEventListener("click", togglePop)
 function togglePop() {
   if (quotesPopUp.style.display === "block" && quotesLegend.style.display === "block") {
     quotesPopUp.style.display = "none";
     quotesLegend.style.display = "none";
-    addQuoteContainer.style.visibility = "hidden"
+    addQuoteContainer.style.visibility = "hidden";
   } else {
     quotesPopUp.style.display = "block";
     quotesLegend.style.display = "block";

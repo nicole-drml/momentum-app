@@ -100,27 +100,28 @@ body {
   letter-spacing: 0.35px;
 }
 
-#todo-span {
+#todo-button {
   padding-right: 25px;
   font-weight: 500;
   letter-spacing: 0.5px;
   color: rgba(240, 248, 255, 0.5);
+  background-color: transparent;
+  border: none;
 }
 
-#todo-span:hover {
+#todo-button:hover {
   cursor: pointer;
   color: rgba(240, 248, 255, 0.9);
 }
 
 #task-container {
-  display: block;
+  display: none;
   position: absolute;
   padding: 15px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.6);
   right: 10px;
   bottom: 65px;
-  visibility: hidden;
 }
 #task-container #tasks-legend {
   margin-bottom: 20px;
