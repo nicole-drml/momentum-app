@@ -1,5 +1,5 @@
 import {getUsername, toDoBtn} from "./welcome.js";
-import {createMomentumElements, clearLocalName} from "./momentum.js";
+import {createMomentumElements, clearLocalName, } from "./momentum.js";
 import {
   quotes,
   displayQuoteFunction,
@@ -21,5 +21,6 @@ createMomentumElements()
 clearLocalName()
 
 
+console.log(localStorage)
 //  window.location.reload()
 // localStorage.clear();
