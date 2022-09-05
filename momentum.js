@@ -26,6 +26,9 @@ function getTime() {
   }
 
   if (hour === 0) {
+    if (focus !== null || focus !== undefined) {
+      localStorage.removeItem("focus");
+    }
     hour = 12;
   }
 

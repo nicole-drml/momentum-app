@@ -8,7 +8,7 @@ import {
   addQuoteFunction,
   addQuoteContainer
 } from "./quotes.js";
-import {showCheckListFunction} from "./check-list.js";
+import {showCheckListFunction, updateTaskContainer} from "./check-list.js";
 
 
 quotesPopFunction() 
@@ -20,7 +20,7 @@ showCheckListFunction()
 createMomentumElements()
 clearLocalName()
 
-
 console.log(localStorage)
+
 //  window.location.reload()
 // localStorage.clear();

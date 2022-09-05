@@ -183,8 +183,18 @@ body {
 #task-container .tasks .task-text:focus ~ .checkbox-button {
   display: block;
 }
+#task-container .tasks .fa-pen-nib,
+#task-container .tasks .fa-eraser {
+  margin-left: 10px;
+  color: rgba(240, 248, 255, 0.5);
+}
+#task-container .tasks .fa-pen-nib:hover,
+#task-container .tasks .fa-eraser:hover {
+  cursor: pointer;
+  color: rgba(240, 248, 255, 0.9);
+}
 
-#displayed-quote-container {
+#icons-and-displayed-quote {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -193,7 +203,7 @@ body {
   bottom: 2px;
   width: 100%;
 }
-#displayed-quote-container #quotes-settings {
+#icons-and-displayed-quote #quotes-settings {
   background: transparent;
   outline: none;
   border: none;
@@ -205,12 +215,12 @@ body {
   transform: rotate(0deg);
   transition-duration: 1000ms;
 }
-#displayed-quote-container #quotes-settings:hover {
+#icons-and-displayed-quote #quotes-settings:hover {
   color: rgba(240, 248, 255, 0.9);
   transform: rotate(45deg);
   transition-duration: 1000ms;
 }
-#displayed-quote-container #displayed-quote {
+#icons-and-displayed-quote #displayed-quote {
   margin-left: auto;
   margin-right: auto;
   text-align: center;

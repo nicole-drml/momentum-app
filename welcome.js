@@ -7,7 +7,7 @@ const toDoBtn = document.getElementById("todo-button");
 
 let userName = localStorage.getItem("name");
 
-const nameInput = document.querySelector("input");
+const nameInput = document.getElementById("name");
 const welcome = document.getElementById("welcome");
 const greeting = document.getElementById("greeting-text");
 

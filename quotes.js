@@ -1,4 +1,4 @@
-import {displayedQuote} from "./welcome.js";
+import { displayedQuote } from "./welcome.js";
 
 const quotesStorage = document.getElementById("quotes-storage");
 const quotesSettings = document.getElementById("quotes-settings");
@@ -7,59 +7,16 @@ const newQuoteInput = document.getElementById("new-quote-input");
 
 const addQuoteContainer = document.getElementById("new-quote-container");
 
-const quotes = [
-  {
-    quote:
-      "A ship in harbor is safe, but that is not what ships are built for.",
-    quoteBy: "John A Shedd",
-  },
-  {
-    quote:
-      "Mistakes are always forgivable, if one has the courage to admit them.",
-    quoteBy: "Bruce Lee",
-  },
-  {
-    quote: "Nothing is particularly hard if you divide them in small task.",
-    quoteBy: "Henry Ford",
-  },
-  {
-    quote:
-      "Life can only be understood backwards; but it must be lived forwards.",
-    quoteBy: "Soren Kierkegaard",
-  },
-  {
-    quote: "Inspiration exists, but it has to find you working.",
-    quoteBy: "Pablo Picasso",
-  },
-  {
-    quote:
-      "The greatest work that kindness does to others is that it makes them kind themselves.",
-    quoteBy: "Amelia Earheart",
-  },
-  {
-    quote: "Judge your success by what you had to give up in order to get it.",
-    quoteBy: "Dalai Lama",
-  },
-  {
-    quote:
-      "Have a heart that never hardens, and a temper that never tires, and a touch that never hurts.",
-    quoteBy: "Charles Dickens",
-  },
-  {
-    quote:
-      "There is nothing noble about being better than your fellow man. Only being better than your former self.",
-    quoteBy: "Ernest Hemingway",
-  },
+let quotes = [
+"Inspiration exists, but it has to find you working.",
+"The greatest work that kindness does to others is that it makes them kind themselves.",
+"Judge your success by what you had to give up in order to get it.",
+"Have a heart that never hardens, and a temper that never tires, and a touch that never hurts.",
+"There is nothing noble about being better than your fellow man. Only being better than your former self.",
   //{quote: quoteBy:}
 ];
 
-function displayQuoteFunction() {
-  function randomNum() {
-    return Math.floor(Math.random() * quotes.length);
-  }
-
-  displayedQuote.innerHTML = `"${quotes[randomNum()].quote}"`;
-}
+//localStorage.setItem("quotes", JSON.stringify(quotes))
 
 function quotesContainerFunction() {
   for (let i = 0; i < quotes.length; i++) {
@@ -67,24 +24,25 @@ function quotesContainerFunction() {
 
     const newLi = document.createElement("li");
     const quote = document.createElement("span");
-    const quoteBy = document.createElement("span");
-    const blockQuote = document.createElement("i");
+    //const quoteBy = document.createElement("span");
+    const deleteQuoteBtn = document.createElement("i");
 
-    quote.textContent = `"${item.quote}"`;
-    quoteBy.textContent = `- ${item.quoteBy}`;
-    blockQuote.className = "fa-solid fa-ban ";
+    quote.textContent = `"${item}"`;
+    //quoteBy.textContent = `- ${item.quoteBy}`;
+    deleteQuoteBtn.className = "fa-solid fa-trash";
 
     newLi.append(quote);
-    newLi.append(quoteBy);
-    newLi.appendChild(blockQuote);
+    //newLi.append(quoteBy);
+    newLi.appendChild(deleteQuoteBtn);
 
     newLi.style.marginBottom = "12px";
-    quoteBy.style.fontSize = "12px";
-    blockQuote.style.fontSize = "15px";
-    blockQuote.style.marginLeft = "10px";
-    blockQuote.style.visibility = "hidden";
-    blockQuote.style.opacity = ".5";
-    blockQuote.style.cursor = "pointer";
+    //quoteBy.style.fontSize = "12px";
+
+    deleteQuoteBtn.style.fontSize = "15px";
+    deleteQuoteBtn.style.marginLeft = "10px";
+    deleteQuoteBtn.style.visibility = "hidden";
+    deleteQuoteBtn.style.opacity = ".5";
+    deleteQuoteBtn.style.cursor = "pointer";
 
     quotesStorage.append(newLi);
 
@@ -92,35 +50,39 @@ function quotesContainerFunction() {
     newLi.addEventListener("mouseout", hideSettings);
 
     function showSettings() {
-      blockQuote.style.visibility = "visible";
+      deleteQuoteBtn.style.visibility = "visible";
     }
 
     function hideSettings() {
-      blockQuote.style.visibility = "hidden";
+      deleteQuoteBtn.style.visibility = "hidden";
     }
 
-    blockQuote.addEventListener("mouseover", higherOpacity);
-    blockQuote.addEventListener("mouseout", lowerOpacity);
+    deleteQuoteBtn.addEventListener("mouseover", higherOpacity);
+    deleteQuoteBtn.addEventListener("mouseout", lowerOpacity);
 
     function lowerOpacity() {
-      blockQuote.style.opacity = ".5";
+      deleteQuoteBtn.style.opacity = ".5";
     }
 
     function higherOpacity() {
-      blockQuote.style.opacity = "1";
+      deleteQuoteBtn.style.opacity = "1";
     }
 
-    blockQuote.addEventListener("click", disableQuote);
-    function disableQuote() {
+    deleteQuoteBtn.addEventListener("click", deleteQuote);
+    function deleteQuote() {
       if (quote.style.opacity === "1") {
         quote.style.opacity = ".5";
-        quoteBy.style.opacity = ".5";
+        //quoteBy.style.opacity = ".5";
       } else {
         quote.style.opacity = "1";
-        quoteBy.style.opacity = "1";
+        //quoteBy.style.opacity = "1";
       }
     }
+    //localStorage.setItem(`quote${[i]}`,`${quotes[i].quote}` )
+    //const quotee = `quote${[i]}: ${quotes[i].quote}`
+    //JSON.stringify(quotes)
   }
+  console.log(quotes);
 }
 
 function quotesPopFunction() {
@@ -136,13 +98,13 @@ function quotesPopFunction() {
       quotesPopUp.style.display = "none";
       quotesLegend.style.display = "none";
       addQuoteContainer.style.visibility = "hidden";
-      quotesSettings.style.transitionDuration = "1000ms"
-      quotesSettings.style.color = "rgb(240, 248, 255, 0.5)"
+      quotesSettings.style.transitionDuration = "1000ms";
+      quotesSettings.style.color = "rgb(240, 248, 255, 0.5)";
     } else {
       quotesPopUp.style.display = "block";
       quotesLegend.style.display = "block";
-      quotesSettings.style.transitionDuration = "1000ms"
-      quotesSettings.style.color = "rgb(240, 248, 255, 0.9)"
+      quotesSettings.style.transitionDuration = "1000ms";
+      quotesSettings.style.color = "rgb(240, 248, 255, 0.9)";
     }
   }
 }
@@ -158,7 +120,30 @@ function addQuoteFunction() {
       addQuoteContainer.style.visibility = "visible";
     }
   }
+  let newQuoteValue = ""
+  newQuoteInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      newQuoteValue = event.target.value;
+      //const newEntryLi = document.createElement("li");
+      //const newEntryQuote = document.createElement("span");
+
+      //newEntryQuote.textContent = `"${newQuoteValue}"`;
+      //newEntryLi.append(newEntryQuote);
+    //quotesStorage.append(newEntryLi);
+      //console.log(newQuoteValue)
+
+    quotes.push(`${newQuoteValue}`)
+    }
+  });
 }
+function displayQuoteFunction() {
+  function randomNum() {
+    return Math.floor(Math.random() * quotes.length);
+  }
+
+  displayedQuote.innerHTML = `"${quotes[randomNum()]}"`;
+}
+
 
 export {
   quotes,
@@ -167,5 +152,5 @@ export {
   quotesPopFunction,
   addQuoteFunction,
   addQuoteContainer,
-  quotesSettings
+  quotesSettings,
 };

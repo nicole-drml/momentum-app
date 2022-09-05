@@ -83,5 +83,17 @@
     .task-text:focus ~ .checkbox-button {
       display: block;
     }
+
+    .fa-pen-nib,
+    .fa-eraser {
+      margin-left: 10px;
+      color: rgb(240, 248, 255, 0.5);
+    }
+
+    .fa-pen-nib:hover,
+    .fa-eraser:hover {
+      cursor: pointer;
+      color: rgb(240, 248, 255, 0.9);
+    }
   }
 }
