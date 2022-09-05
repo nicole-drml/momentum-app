@@ -1,26 +1,21 @@
-import {getUsername, toDoBtn} from "./welcome.js";
-import {createMomentumElements, clearLocalName, } from "./momentum.js";
+import { getUsername, toDoBtn } from "./welcome.js";
+import { clearLocalName } from "./momentum.js";
 import {
-  quotes,
   displayQuoteFunction,
   quotesContainerFunction,
   quotesPopFunction,
   addQuoteFunction,
-  addQuoteContainer
 } from "./quotes.js";
-import {showCheckListFunction, updateTaskContainer} from "./check-list.js";
+import { showCheckListFunction } from "./check-list.js";
 
+quotesPopFunction();
+getUsername();
+displayQuoteFunction();
+quotesContainerFunction();
+addQuoteFunction();
+showCheckListFunction();
+clearLocalName();
 
-quotesPopFunction() 
-getUsername()
-displayQuoteFunction()
-quotesContainerFunction()
-addQuoteFunction()
-showCheckListFunction()
-createMomentumElements()
-clearLocalName()
-
-console.log(localStorage)
-
+console.log(localStorage);
 //  window.location.reload()
 // localStorage.clear();

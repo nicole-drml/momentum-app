@@ -22,68 +22,33 @@
   background-color: rgb(0, 0, 0, 0.6);
   right: 10px;
   bottom: 65px;
+  width: 800px;
+  max-width: 220px;
+  max-height: 300px;
+  overflow-y: scroll;
+  list-style-type: none;
 
   #tasks-legend {
     margin-bottom: 20px;
   }
+  #task-input {
+    width: 100%;
+    background: rgb(0, 0, 0, 0.6);
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
 
-  .tasks {
-    display: flex;
-    list-style-type: none;
-
-    .task {
+    #todo-list {
       display: flex;
       align-items: center;
       gap: 2px;
-
-      .task-checkbox {
-        appearance: none;
-        background-color: rgb(255, 255, 255);
-        height: 12px;
-        width: 12px;
-        border-radius: 2px;
-        cursor: pointer;
-      }
-      .task-checkbox:after {
-        text-align: center;
-        margin-top: auto;
-        margin-bottom: auto;
-        content: "\2713";
-        font-weight: 300;
-        border-radius: 3px;
-        font-size: 0.8rem;
-        color: white;
-        display: none;
-      }
-      .task-checkbox:hover {
-        background-color: rgb(81, 82, 83);
-      }
-      .task-checkbox:checked {
-        background-color: rgb(58, 60, 58);
-      }
-      .task-checkbox:checked:after {
-        display: block;
-      }
+      list-style-type: none;
     }
-    .task-text {
-      width: 70%;
-      background: transparent;
-      outline: none;
-      border: none;
-      color: white;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 1rem;
-    }
-
-    .checkbox-button {
-      display: none;
-    }
-
-    .task-text:focus ~ .checkbox-button {
-      display: block;
-    }
-
+  
     .fa-pen-nib,
     .fa-eraser {
       margin-left: 10px;
@@ -95,5 +60,44 @@
       cursor: pointer;
       color: rgb(240, 248, 255, 0.9);
     }
-  }
 }
+
+
+.new-task-li {
+margin-bottom: 10px;
+}
+
+.checkbox-input {
+  transform: scale(1.2);
+  accent-color: grey;
+  cursor: pointer;
+}
+
+.new-task-li {
+margin-left: 10px;
+position: absolute;
+max-width: 50%;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.task-buttons {
+  display: inline-block;
+  position: absolute;
+  padding: 10px;
+  margin-top: -10px;
+  right: 0;
+}
+
+.edit-task-button {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.delete-task-button {
+  margin-left: 5px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+

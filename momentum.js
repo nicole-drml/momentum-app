@@ -4,6 +4,7 @@ let focus = localStorage.getItem("focus");
 const focusContainer = document.getElementById("focus");
 const focusQuestion = document.getElementById("focus-question");
 const focusInput = document.getElementById("focus-input");
+const checkFocusStyles = document.getElementsByClassName("focus-input");
 
 let time = "";
 let timelyGreet = "";
@@ -40,52 +41,43 @@ function getTime() {
   clock.innerHTML = time;
 }
 
-function createMomentumElements() {
-  const today = document.createElement("h1");
-  const focusAnswer = document.createElement("span");
-  const checkFocus = document.createElement("input");
-  const deleteLeft = document.createElement("i");
-  const greatJob = document.createElement("h1");
+const today = document.createElement("h1");
+const checkFocus = document.createElement("input");
+const focusAnswer = document.createElement("span");
+const deleteLeft = document.createElement("i");
+const focusBtns = document.createElement("div");
+const greatJob = document.createElement("h1");
 
-  today.style.marginTop = "15px";
-  today.style.fontSize = "20px";
-
+function classesFocusElements() {
+  today.classList.add("focus-h1");
+  checkFocus.classList.add("check-focus");
   checkFocus.type = "checkbox";
-  checkFocus.style.marginRight = "20px";
-  checkFocus.style.transform = "scale(1.3)";
-  checkFocus.style.opacity = "0";
-  checkFocus.style.accentColor = "grey";
-  checkFocus.style.cursor = "pointer";
-
-  focusAnswer.style.fontSize = "40px";
-  focusAnswer.style.lineHeight = "60px";
-
+  focusAnswer.classList.add("focus-answer");
   deleteLeft.className = "fa-solid fa-delete-left";
-  deleteLeft.style.marginLeft = "10px";
-  deleteLeft.style.fontSize = "20px";
-  deleteLeft.style.opacity = "0";
-  deleteLeft.style.cursor = "pointer";
-  deleteLeft.style.padding = "5px";
+  deleteLeft.classList.add("focus-delete");
+  focusBtns.classList.add("focus-buttons");
+  greatJob.classList.add("great-job");
+  greatJob.textContent = "Great job!";
+}
+classesFocusElements();
 
-  greatJob.innerHTML = "Great job!";
-  greatJob.style.fontSize = "20px";
-  greatJob.style.fontWeight = "300";
-  greatJob.style.letterSpacing = "1px";
-  greatJob.style.opacity = "0";
-
+function appendFocusElements() {
+  focusBtns.append(checkFocus);
+  focusBtns.append(focusAnswer);
+  focusBtns.append(deleteLeft);
   focusContainer.append(today);
-  focusContainer.append(checkFocus);
-  focusContainer.append(focusAnswer);
-  focusContainer.append(deleteLeft);
+  focusContainer.append(focusBtns);
   focusContainer.append(greatJob);
+}
+appendFocusElements();
 
+function focusAnswered() {
   if (focus === null || focus === undefined) {
     focusInput.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
         focus = event.target.value;
         localStorage.setItem("focus", focus);
         window.location.reload();
-        checkFocus.style.display = "none";
       }
     });
   } else {
@@ -93,14 +85,15 @@ function createMomentumElements() {
     focusQuestion.remove();
     today.innerHTML = `TODAY`;
     focusAnswer.innerHTML = `${focus}`;
-    focusContainer.addEventListener("mouseover", higherOpacity);
-    focusContainer.addEventListener("mouseout", lowerOpacity);
-    checkFocus.addEventListener("change", getCheckValue);
     checkFocusStorage();
-    deleteLeft.addEventListener("click", deleteFocus);
-    deleteLeft.addEventListener("mouseover", higherBackground);
-    deleteLeft.addEventListener("mouseout", lowerBackground);
+    focusBtns.style.visibility = "visible"
   }
+}
+focusAnswered();
+
+function focusContainerEvents() {
+  focusContainer.addEventListener("mouseover", higherOpacity);
+  focusContainer.addEventListener("mouseout", lowerOpacity);
 
   function lowerOpacity() {
     deleteLeft.style.opacity = "0";
@@ -111,13 +104,11 @@ function createMomentumElements() {
     deleteLeft.style.opacity = "1";
     checkFocus.style.opacity = "1";
   }
+}
+focusContainerEvents();
 
-  function checkOut() {
-    focusAnswer.style.textDecoration = "line-through";
-    focusAnswer.style.opacity = ".3";
-    greatJob.style.opacity = "1";
-    checkFocus.style.display = "none";
-  }
+function checkFocusEvents() {
+  checkFocus.addEventListener("change", getCheckValue);
 
   function getCheckValue() {
     if ((checkFocus.checked = true)) {
@@ -127,16 +118,39 @@ function createMomentumElements() {
       localStorage.removeItem("checkbox");
     }
   }
+}
+checkFocusEvents();
 
-  function checkFocusStorage() {
-    if (localStorage.checkbox === "checked") {
-      checkOut();
-    } else {
-      focusAnswer.style.textDecoration = "none";
-      focusAnswer.style.opacity = "1";
-      greatJob.style.opacity = "0";
-    }
+function checkFocusStorage() {
+  if (localStorage.checkbox === "checked") {
+    checkOut();
+  } else {
+    focusAnswer.style.textDecoration = "none";
+    focusAnswer.style.opacity = "1";
+    greatJob.style.opacity = "0";
   }
+}
+
+function checkOut() {
+  focusAnswer.style.textDecoration = "line-through";
+  focusAnswer.style.opacity = ".3";
+  greatJob.style.opacity = "1";
+  checkFocus.style.visibility = "hidden";
+}
+
+
+function deleteFocusEvents() {
+  deleteLeft.addEventListener("click", deleteFocus);
+  deleteLeft.addEventListener("mouseover", higherBackground);
+  deleteLeft.addEventListener("mouseout", lowerBackground);
+
+  function deleteFocus() {
+    localStorage.removeItem("focus");
+    localStorage.removeItem("checkbox");
+    checkFocus.checked = false;
+    window.location.reload();
+  }
+
   function lowerBackground() {
     deleteLeft.style.background = "none";
   }
@@ -145,14 +159,8 @@ function createMomentumElements() {
     deleteLeft.style.backgroundColor = "rgb(240, 248, 255, 0.2)";
     deleteLeft.style.borderRadius = "50px";
   }
-
-  function deleteFocus() {
-    localStorage.removeItem("focus");
-    localStorage.removeItem("checkbox");
-    checkFocus.checked = false;
-    window.location.reload();
-  }
 }
+deleteFocusEvents();
 
 function clearLocalName() {
   greeting.style.cursor = "pointer";
@@ -168,11 +176,10 @@ function clearLocalName() {
   }
 
   greeting.addEventListener("click", clearLocalStorage);
-
   function clearLocalStorage() {
     localStorage.removeItem("name");
     window.location.reload();
   }
 }
 
-export { getTime, time, timelyGreet, createMomentumElements, clearLocalName };
+export { getTime, time, timelyGreet, clearLocalName };

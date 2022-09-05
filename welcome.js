@@ -33,4 +33,4 @@ function getUsername() {
   }
 }
 
-export { toDoBtn, userName, getUsername, displayedQuote, greeting};
+export { toDoBtn, userName, getUsername, displayedQuote, greeting };

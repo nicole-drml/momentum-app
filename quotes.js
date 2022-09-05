@@ -7,36 +7,77 @@ const newQuoteInput = document.getElementById("new-quote-input");
 
 const addQuoteContainer = document.getElementById("new-quote-container");
 
-let quotes = [
-"Inspiration exists, but it has to find you working.",
-"The greatest work that kindness does to others is that it makes them kind themselves.",
-"Judge your success by what you had to give up in order to get it.",
-"Have a heart that never hardens, and a temper that never tires, and a touch that never hurts.",
-"There is nothing noble about being better than your fellow man. Only being better than your former self.",
-  //{quote: quoteBy:}
+let setQuotes = [
+  "Inspiration exists, but it has to find you working.",
+  "The greatest work that kindness does to others is that it makes them kind themselves.",
+  "Judge your success by what you had to give up in order to get it.",
+  "Have a heart that never hardens, and a temper that never tires, and a touch that never hurts.",
+  "There is nothing noble about being better than your fellow man. Only being better than your former self.",
 ];
 
-//localStorage.setItem("quotes", JSON.stringify(quotes))
+let newQuotes = [];
+
+function addQuoteFunction() {
+  const addQuoteButton = document.getElementById("add-quote-button");
+
+  addQuoteButton.addEventListener("click", newQuotePop);
+  function newQuotePop() {
+    if (addQuoteContainer.style.visibility === "visible") {
+      addQuoteContainer.style.visibility = "hidden";
+    } else {
+      addQuoteContainer.style.visibility = "visible";
+    }
+  }
+}
+
+newQuoteInput.addEventListener("keypress", (event) => {
+  let newQuoteValue = "";
+  if (event.key === "Enter") {
+    newQuoteValue = event.target.value;
+    const newEntryLi = document.createElement("li");
+    const newEntryQuote = document.createElement("span");
+    newEntryQuote.textContent = `"${newQuoteValue}"`;
+
+    newEntryLi.style.marginBottom = "10px";
+    newEntryLi.append(newEntryQuote);
+    quotesStorage.append(newEntryLi);
+
+    newQuotes.push(newQuoteValue);
+
+    localStorage.setItem("newQuotes", newQuotes);
+    newQuoteInput.value = "";
+
+    //console.log(localStorage.newQuotes)
+  }
+});
+
+setQuotes.forEach((quote) => {
+  newQuotes.push(quote);
+});
+
+function displayQuoteFunction() {
+  function randomNum() {
+    return Math.floor(Math.random() * newQuotes.length);
+  }
+
+  displayedQuote.innerHTML = `"${newQuotes[randomNum()]}"`;
+}
 
 function quotesContainerFunction() {
-  for (let i = 0; i < quotes.length; i++) {
-    const item = quotes[i];
+  for (let i = 0; i < newQuotes.length; i++) {
+    const item = newQuotes[i];
 
     const newLi = document.createElement("li");
     const quote = document.createElement("span");
-    //const quoteBy = document.createElement("span");
     const deleteQuoteBtn = document.createElement("i");
 
     quote.textContent = `"${item}"`;
-    //quoteBy.textContent = `- ${item.quoteBy}`;
     deleteQuoteBtn.className = "fa-solid fa-trash";
 
     newLi.append(quote);
-    //newLi.append(quoteBy);
     newLi.appendChild(deleteQuoteBtn);
 
     newLi.style.marginBottom = "12px";
-    //quoteBy.style.fontSize = "12px";
 
     deleteQuoteBtn.style.fontSize = "15px";
     deleteQuoteBtn.style.marginLeft = "10px";
@@ -72,17 +113,11 @@ function quotesContainerFunction() {
     function deleteQuote() {
       if (quote.style.opacity === "1") {
         quote.style.opacity = ".5";
-        //quoteBy.style.opacity = ".5";
       } else {
         quote.style.opacity = "1";
-        //quoteBy.style.opacity = "1";
       }
     }
-    //localStorage.setItem(`quote${[i]}`,`${quotes[i].quote}` )
-    //const quotee = `quote${[i]}: ${quotes[i].quote}`
-    //JSON.stringify(quotes)
   }
-  console.log(quotes);
 }
 
 function quotesPopFunction() {
@@ -109,44 +144,9 @@ function quotesPopFunction() {
   }
 }
 
-function addQuoteFunction() {
-  const addQuoteButton = document.getElementById("add-quote-button");
-
-  addQuoteButton.addEventListener("click", newQuotePop);
-  function newQuotePop() {
-    if (addQuoteContainer.style.visibility === "visible") {
-      addQuoteContainer.style.visibility = "hidden";
-    } else {
-      addQuoteContainer.style.visibility = "visible";
-    }
-  }
-  let newQuoteValue = ""
-  newQuoteInput.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      newQuoteValue = event.target.value;
-      //const newEntryLi = document.createElement("li");
-      //const newEntryQuote = document.createElement("span");
-
-      //newEntryQuote.textContent = `"${newQuoteValue}"`;
-      //newEntryLi.append(newEntryQuote);
-    //quotesStorage.append(newEntryLi);
-      //console.log(newQuoteValue)
-
-    quotes.push(`${newQuoteValue}`)
-    }
-  });
-}
-function displayQuoteFunction() {
-  function randomNum() {
-    return Math.floor(Math.random() * quotes.length);
-  }
-
-  displayedQuote.innerHTML = `"${quotes[randomNum()]}"`;
-}
-
-
 export {
-  quotes,
+  setQuotes,
+  newQuotes,
   displayQuoteFunction,
   quotesContainerFunction,
   quotesPopFunction,

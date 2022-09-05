@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -72,6 +71,7 @@ body {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 #momentum #container2 #focus-container {
   margin-top: 25px;
@@ -90,14 +90,57 @@ body {
   border: none;
   border-bottom: 2px solid white;
   margin-top: 8px;
-  width: 530px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   color: rgba(255, 255, 255, 0.95);
   text-align: center;
   font-weight: 500;
   font-size: 2rem;
   letter-spacing: 0.35px;
+}
+
+.focus-h1 {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.check-focus {
+  transform: scale(1.3);
+  accent-color: grey;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.focus-answer {
+  font-size: 40px;
+  line-height: 60px;
+  max-width: 70%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.focus-delete {
+  font-size: 20px;
+  opacity: 0;
+  cursor: poiner;
+  padding: 3px;
+  margin-right: auto;
+}
+
+.focus-buttons {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  visibility: hidden;
+}
+
+.great-job {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  opacity: 0;
 }
 
 #todo-button {
@@ -124,74 +167,78 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   right: 10px;
   bottom: 65px;
+  width: 800px;
+  max-width: 220px;
+  max-height: 300px;
+  overflow-y: scroll;
+  list-style-type: none;
 }
 #task-container #tasks-legend {
   margin-bottom: 20px;
 }
-#task-container .tasks {
-  display: flex;
-  list-style-type: none;
-}
-#task-container .tasks .task {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-#task-container .tasks .task .task-checkbox {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: rgb(255, 255, 255);
-  height: 12px;
-  width: 12px;
-  border-radius: 2px;
-  cursor: pointer;
-}
-#task-container .tasks .task .task-checkbox:after {
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  content: "✓";
-  font-weight: 300;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  color: white;
-  display: none;
-}
-#task-container .tasks .task .task-checkbox:hover {
-  background-color: rgb(81, 82, 83);
-}
-#task-container .tasks .task .task-checkbox:checked {
-  background-color: rgb(58, 60, 58);
-}
-#task-container .tasks .task .task-checkbox:checked:after {
-  display: block;
-}
-#task-container .tasks .task-text {
-  width: 70%;
-  background: transparent;
+#task-container #task-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
   outline: none;
   border: none;
   color: white;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: 1rem;
+  margin-bottom: 10px;
+  padding: 5px;
 }
-#task-container .tasks .checkbox-button {
-  display: none;
+#task-container #todo-list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style-type: none;
 }
-#task-container .tasks .task-text:focus ~ .checkbox-button {
-  display: block;
-}
-#task-container .tasks .fa-pen-nib,
-#task-container .tasks .fa-eraser {
+#task-container .fa-pen-nib,
+#task-container .fa-eraser {
   margin-left: 10px;
   color: rgba(240, 248, 255, 0.5);
 }
-#task-container .tasks .fa-pen-nib:hover,
-#task-container .tasks .fa-eraser:hover {
+#task-container .fa-pen-nib:hover,
+#task-container .fa-eraser:hover {
   cursor: pointer;
   color: rgba(240, 248, 255, 0.9);
+}
+
+.new-task-li {
+  margin-bottom: 10px;
+}
+
+.checkbox-input {
+  transform: scale(1.2);
+  accent-color: grey;
+  cursor: pointer;
+}
+
+.new-task-li {
+  margin-left: 10px;
+  position: absolute;
+  max-width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-buttons {
+  display: inline-block;
+  position: absolute;
+  padding: 10px;
+  margin-top: -10px;
+  right: 0;
+}
+
+.edit-task-button {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.delete-task-button {
+  margin-left: 5px;
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 #icons-and-displayed-quote {
@@ -292,9 +339,6 @@ body {
   margin-left: 10px;
   bottom: 380px;
   width: 350px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
   gap: 10px;
   position: absolute;
   visibility: hidden;
