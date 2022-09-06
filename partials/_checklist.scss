@@ -8,23 +8,24 @@
   border: none;
   font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-#todo-button:hover {
   cursor: pointer;
-  color: rgb(240, 248, 255, 0.9);
+}
+
+#todo-button:hover {
+  color: rgb(240, 248, 255, 0.9)
 }
 
 #task-container {
   display: none;
+  flex-direction: column;
   position: absolute;
   padding: 15px;
   border-radius: 5px;
   background-color: rgb(0, 0, 0, 0.6);
   right: 10px;
   bottom: 65px;
-  width: 800px;
-  max-width: 220px;
-  max-height: 300px;
+  width: 300px;
+  max-height: 350px;
   overflow-y: scroll;
   list-style-type: none;
 
@@ -44,7 +45,10 @@
 
     #todo-list {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      max-height: 280px;
+      overflow-y: scroll;
       gap: 2px;
       list-style-type: none;
     }
@@ -63,8 +67,10 @@
 }
 
 
+
 .new-task-li {
-margin-bottom: 10px;
+margin-bottom: 5px;
+display: flex;
 }
 
 .checkbox-input {
@@ -73,18 +79,14 @@ margin-bottom: 10px;
   cursor: pointer;
 }
 
-.new-task-li {
-margin-left: 10px;
-position: absolute;
-max-width: 50%;
+.new-task-span {
+  width: 200px;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
 }
 
 .task-buttons {
-  display: inline-block;
-  position: absolute;
   padding: 10px;
   margin-top: -10px;
   right: 0;
@@ -95,9 +97,15 @@ text-overflow: ellipsis;
   opacity: 0.6;
 }
 
+.edit-task-button:hover {
+  opacity: 0.95;
+}
 .delete-task-button {
   margin-left: 5px;
   cursor: pointer;
   opacity: 0.6;
 }
 
+.delete-task-button:hover {
+  opacity: 0.95;
+}

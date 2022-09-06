@@ -7,8 +7,7 @@ const focusQuestion = document.querySelector("#focus-question");
 const focusInput = document.querySelector("#focus-input");
 
 
-const focusWithInput = document.querySelector("#focus-no-input");
-const today = document.querySelector("#focus-h1");
+const focusWithInput = document.querySelector("#focus-with-input");
 const checkboxFocus = document.querySelector("#checkbox-focus");
 const focusAnswer = document.querySelector("#focus-answer");
 const deleteLeft = document.querySelector("#focus-delete");
@@ -54,7 +53,6 @@ function focusAnswered() {
   if (focus === null || focus === undefined) {
     focusInput.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
-        focusWithInput.style.display = "none"
         focus = event.target.value;
         localStorage.setItem("focus", focus);
         window.location.reload();
@@ -62,28 +60,13 @@ function focusAnswered() {
     });
   } else {
     focusNoInput.remove();
-    focusWithInput.style.display = "block"
     focusAnswer.innerHTML = `${focus}`;
+    focusWithInput.style.display = "block" ;
   }
 }
 focusAnswered()
 
 
-function focusBtnEvents() {
-  focusBtns.addEventListener("mouseover", showButtons);
-  focusBtns.addEventListener("mouseout", hideButtons);
-
-  function hideButtons() {
-    deleteLeft.style.opacity = "0";
-    checkboxFocus.style.opacity = "0";
-  }
-
-  function showButtons() {
-    deleteLeft.style.opacity = "1";
-    checkboxFocus.style.opacity = "1";
-  }
-}
-focusBtnEvents();
 
 function crossOutText() {
   focusAnswer.style.textDecoration = "line-through";
@@ -141,20 +124,10 @@ function deleteFocusEvents() {
 deleteFocusEvents();
 
 function clearLocalName() {
-  greeting.addEventListener("mouseover", lowerOpacity);
-  greeting.addEventListener("mouseout", higherOpacity);
-
-  function lowerOpacity() {
-    greeting.style.opacity = "0.6";
-  }
-
-  function higherOpacity() {
-    greeting.style.opacity = "0.95";
-  }
 
   greeting.addEventListener("click", clearLocalStorage);
   function clearLocalStorage() {
-    localStorage.removeItem("name");
+    localStorage.clear();
     window.location.reload();
   }
 }

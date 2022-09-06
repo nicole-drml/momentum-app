@@ -31,25 +31,28 @@
           <input id="focus-input" type="text" autocomplete="off" />
         </div>
         <div id="focus-with-input">
-          <h1 id="focus-h1">Today</h1>
+          <h1 id="focus-h1" class="show-with-focus-input">TODAY</h1>
           <div id="focus-buttons-div">
-            <input type="checkbox" id="checkbox-focus" />
+            <input
+              type="checkbox"
+              id="checkbox-focus"
+              class="show-with-focus-input"
+            />
             <span id="focus-answer"></span>
-            <i class="fa-solid fa-delete-left" id="focus-delete"></i>
+            <i
+              class="fa-solid fa-delete-left show-with-focus-input"
+              id="focus-delete"
+            ></i>
           </div>
           <h1 id="great-job">Great job!</h1>
         </div>
-        <div id="today-container">
-          <span id="today"></span>
-        </div>
-      </div>
-      <div id="task-container">
-        <legend id="tasks-legend">Today</legend>
-        <ul id="todo-list"></ul>
-        <input type="text" id="task-input" />
       </div>
       <div id="icons-and-displayed-quote">
-        <i class="fa-solid fa-gear" id="quotes-settings"></i>
+        <i
+          class="fa-solid fa-gear"
+          id="quotes-settings"
+          class="up-opacity-on-hover"
+        ></i>
         <span id="displayed-quote"></span>
         <button id="todo-button">Todo</button>
       </div>
@@ -63,6 +66,11 @@
       <div id="quotes-pop-up">
         <ul id="quotes-storage"></ul>
       </div>
+      <div id="task-container">
+        <legend id="tasks-legend">Today</legend>
+        <ul id="todo-list"></ul>
+        <input type="text" id="task-input" />
+    </div>
     </section>
   </body>
 </html>

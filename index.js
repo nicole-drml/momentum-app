@@ -6,15 +6,17 @@ import {
   quotesPopFunction,
   addQuoteFunction,
 } from "./quotes.js";
+
 import { showCheckListFunction } from "./check-list.js";
+
 
 quotesPopFunction();
 getUsername();
 displayQuoteFunction();
 quotesContainerFunction();
 addQuoteFunction();
-showCheckListFunction();
 clearLocalName();
+showCheckListFunction()
 
 console.log(localStorage);
 //  window.location.reload()

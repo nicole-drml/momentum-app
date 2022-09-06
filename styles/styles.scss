@@ -18,6 +18,10 @@ body {
   color: rgb(255, 255, 255);
 }
 
+.up-opacity-on-hover:hover {
+  opacity: .9;
+}
+
 
 @import "../partials/welcome";
 @import "../partials/momentum";

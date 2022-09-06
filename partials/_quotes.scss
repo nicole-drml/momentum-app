@@ -20,7 +20,6 @@
   }
 
   #quotes-settings:hover {
-    color: rgb(240, 248, 255, 0.9);
     transform: rotate(45deg);
     transition-duration: 1000ms;
   }
@@ -105,7 +104,6 @@
 
   #new-quote-input {
     background-color: rgb(0, 0, 0, 0.6);
-    border-radius: 4px;
     color: white;
     width: 100%;
     padding: 3px;

@@ -7,10 +7,11 @@ const tasksInput = document.getElementById("task-input");
 function showCheckListFunction() {
   toDoBtn.addEventListener("click", showTask);
   function showTask() {
-    if (taskContainer.style.display === "block") {
+    if (taskContainer.style.display === "flex") {
       taskContainer.style.display = "none";
     } else {
-      taskContainer.style.display = "block";
+      taskContainer.style.display = "flex";
+      taskContainer.style.color = "rgb(240, 248, 255, 0.9)";
     }
   }
 }
@@ -30,71 +31,44 @@ tasksInput.addEventListener("keypress", (event) => {
 
     const newTaskContent = document.createElement("span");
     newTaskContent.textContent = `${newTaskValue}`;
-    newTaskContent.classList.add("new-task-li");
-
+    newTaskContent.classList.add("new-task-span");
 
     const taskBtns = document.createElement("div");
     newTaskContent.classList.add("task-buttons");
 
-
     const editTaskBtn = document.createElement("i");
     editTaskBtn.className = "fa-solid fa-pen-nib";
     editTaskBtn.classList.add("edit-task-button");
-    
-    function editTaskEvents() {
-      editTaskBtn.addEventListener("mouseover", upEditTaskOpacity);
-      editTaskBtn.addEventListener("mouseout", downEditTaskOpacity);
-  
-      function downEditTaskOpacity() {
-        editTaskBtn.style.opacity = "0.6";
-      }
-  
-      function upEditTaskOpacity() {
-        editTaskBtn.style.opacity = "0.95";
-      }
-    }
-    editTaskEvents()
 
     const deleteTaskBtn = document.createElement("i");
     deleteTaskBtn.className = "fa-solid fa-eraser";
     deleteTaskBtn.classList.add("delete-task-button");
 
-    function deleteTaskEvents() {
-      deleteTaskBtn.addEventListener("mouseover", upDelTaskOpacity);
-      deleteTaskBtn.addEventListener("mouseout", downDelTaskOpacity);
-  
-      function downDelTaskOpacity() {
-        deleteTaskBtn.style.opacity = "0.6";
-      }
-  
-      function upDelTaskOpacity() {
-        deleteTaskBtn.style.opacity = "0.95";
-      }
+    function appendTaskElements() {
+      taskBtns.append(editTaskBtn);
+      taskBtns.append(deleteTaskBtn);
+      newTaskLi.append(taskCheckbox);
+      newTaskLi.append(newTaskContent);
+      newTaskLi.append(taskBtns);
+      tasksUl.append(newTaskLi);
     }
-    deleteTaskEvents() 
-
-    taskBtns.append(editTaskBtn);
-    taskBtns.append(deleteTaskBtn);
-
-    newTaskLi.append(taskCheckbox);
-    newTaskLi.append(newTaskContent);
-    newTaskLi.append(taskBtns);
-    tasksUl.append(newTaskLi);
-
-
+    appendTaskElements();
 
     tasksInput.value = "";
 
-    function checkTaskBox() {
-      if (taskCheckbox.checked === true) {
-        newTaskContent.style.textDecoration = "line-through";
-        newTaskContent.style.opacity = ".3";
-      } else {
-        newTaskContent.style.textDecoration = "none";
-        newTaskContent.style.opacity = "1";
-      }
-    }
+
+function checkTaskBox() {
+  if (taskCheckbox.checked === true) {
+    newTaskContent.style.textDecoration = "line-through";
+    newTaskContent.style.opacity = ".3";
+  } else {
+    newTaskContent.style.textDecoration = "none";
+    newTaskContent.style.opacity = "1";
+  }
+}
+checkTaskBox();
   }
 });
+
 
 export { showCheckListFunction };
