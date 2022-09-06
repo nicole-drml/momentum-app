@@ -1,19 +1,19 @@
 import { greeting, userName } from "./welcome.js";
 
 let focus = localStorage.getItem("focus");
-const focusContainer = document.getElementById("focus");
-const focusQuestion = document.getElementById("focus-question");
-const focusInput = document.getElementById("focus-input");
-const checkFocusStyles = document.getElementsByClassName("focus-input");
+
+const focusNoInput = document.querySelector("#focus-no-input");
+const focusQuestion = document.querySelector("#focus-question");
+const focusInput = document.querySelector("#focus-input");
 
 
-const today = document.createElement("h1");
-const checkFocus = document.createElement("input");
-const focusAnswer = document.createElement("span");
-const deleteLeft = document.createElement("i");
-const focusBtns = document.createElement("div");
-const greatJob = document.createElement("h1");
-
+const focusWithInput = document.querySelector("#focus-no-input");
+const today = document.querySelector("#focus-h1");
+const checkboxFocus = document.querySelector("#checkbox-focus");
+const focusAnswer = document.querySelector("#focus-answer");
+const deleteLeft = document.querySelector("#focus-delete");
+const focusBtns = document.querySelector("#focus-buttons-div");
+const greatJob = document.querySelector("#great-job");
 
 let time = "";
 let timelyGreet = "";
@@ -50,51 +50,49 @@ function getTime() {
   clock.innerHTML = time;
 }
 
-
-function classesFocusElements() {
-  today.classList.add("focus-h1");
-  checkFocus.classList.add("check-focus");
-  checkFocus.type = "checkbox";
-  focusAnswer.classList.add("focus-answer");
-  deleteLeft.className = "fa-solid fa-delete-left";
-  deleteLeft.classList.add("focus-delete");
-  focusBtns.classList.add("focus-buttons");
-  greatJob.classList.add("great-job");
-  greatJob.textContent = "Great job!";
-}
-classesFocusElements();
-
-function appendFocusElements() {
-  focusBtns.append(checkFocus);
-  focusBtns.append(focusAnswer);
-  focusBtns.append(deleteLeft);
-  focusContainer.append(today);
-  focusContainer.append(focusBtns);
-  focusContainer.append(greatJob);
-}
-appendFocusElements();
-
 function focusAnswered() {
   if (focus === null || focus === undefined) {
     focusInput.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
+        focusWithInput.style.display = "none"
         focus = event.target.value;
         localStorage.setItem("focus", focus);
         window.location.reload();
       }
     });
   } else {
-    focusInput.remove();
-    focusQuestion.remove();
-    today.innerHTML = `TODAY`;
+    focusNoInput.remove();
+    focusWithInput.style.display = "block"
     focusAnswer.innerHTML = `${focus}`;
-    checkFocusStorage();
-    focusBtns.style.visibility = "visible"
   }
 }
-focusAnswered();
+focusAnswered()
 
-function checkFocusStorage() {
+
+function focusBtnEvents() {
+  focusBtns.addEventListener("mouseover", showButtons);
+  focusBtns.addEventListener("mouseout", hideButtons);
+
+  function hideButtons() {
+    deleteLeft.style.opacity = "0";
+    checkboxFocus.style.opacity = "0";
+  }
+
+  function showButtons() {
+    deleteLeft.style.opacity = "1";
+    checkboxFocus.style.opacity = "1";
+  }
+}
+focusBtnEvents();
+
+function crossOutText() {
+  focusAnswer.style.textDecoration = "line-through";
+  focusAnswer.style.opacity = ".3";
+  greatJob.style.opacity = "1";
+  checkboxFocus.style.visibility = "hidden";
+}
+
+function checkboxFocusStorage() {
   if (localStorage.checkbox === "checked") {
     crossOutText();
   } else {
@@ -103,43 +101,21 @@ function checkFocusStorage() {
     greatJob.style.opacity = "0";
   }
 }
+checkboxFocusStorage() 
 
-function focusContainerEvents() {
-  focusContainer.addEventListener("mouseover", higherOpacity);
-  focusContainer.addEventListener("mouseout", lowerOpacity);
-
-  function lowerOpacity() {
-    deleteLeft.style.opacity = "0";
-    checkFocus.style.opacity = "0";
-  }
-
-  function higherOpacity() {
-    deleteLeft.style.opacity = "1";
-    checkFocus.style.opacity = "1";
-  }
-}
-focusContainerEvents();
-
-function checkFocusEvents() {
-  checkFocus.addEventListener("change", getCheckValue);
+function checkboxFocusEvents() {
+  checkboxFocus.addEventListener("change", getCheckValue);
 
   function getCheckValue() {
-    if ((checkFocus.checked = true)) {
-      localStorage.setItem("checkbox", "checked");
+    if ((checkboxFocus.checked = true)) {
+      localStorage.setItem("focusCheckbox", "checked");
       crossOutText();
     } else {
-      localStorage.removeItem("checkbox");
+      localStorage.removeItem("focusCheckbox");
     }
   }
 }
-checkFocusEvents();
-
-function crossOutText() {
-  focusAnswer.style.textDecoration = "line-through";
-  focusAnswer.style.opacity = ".3";
-  greatJob.style.opacity = "1";
-  checkFocus.style.visibility = "hidden";
-}
+checkboxFocusEvents();
 
 function deleteFocusEvents() {
   deleteLeft.addEventListener("click", deleteFocus);
@@ -148,8 +124,8 @@ function deleteFocusEvents() {
 
   function deleteFocus() {
     localStorage.removeItem("focus");
-    localStorage.removeItem("checkbox");
-    checkFocus.checked = false;
+    localStorage.removeItem("focusCheckbox");
+    checkboxFocus.checked = false;
     window.location.reload();
   }
 
@@ -165,7 +141,6 @@ function deleteFocusEvents() {
 deleteFocusEvents();
 
 function clearLocalName() {
-  greeting.style.cursor = "pointer";
   greeting.addEventListener("mouseover", lowerOpacity);
   greeting.addEventListener("mouseout", higherOpacity);
 

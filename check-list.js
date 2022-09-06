@@ -1,7 +1,6 @@
-import { toDoBtn } from "./welcome.js";
-
 const taskContainer = document.getElementById("task-container");
 
+const toDoBtn = document.getElementById("todo-button");
 const tasksUl = document.getElementById("todo-list");
 const tasksInput = document.getElementById("task-input");
 

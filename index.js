@@ -1,4 +1,4 @@
-import { getUsername, toDoBtn } from "./welcome.js";
+import { getUsername} from "./welcome.js";
 import { clearLocalName } from "./momentum.js";
 import {
   displayQuoteFunction,

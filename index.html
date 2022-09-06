@@ -1,59 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="styles/styles.css" />
     <script src="index.js" type="module"></script>
-    <script src="https://kit.fontawesome.com/74309bf0dc.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <script
+      src="https://kit.fontawesome.com/74309bf0dc.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <section id="welcome-section">
-        <div id="welcome-container"> 
-            <span id="welcome-greeting">Hello, what's your name?</span>
-                <input id="name" type="text" autofocus="on" autocomplete="off"></input>
-        </div>
+      <div id="welcome-container">
+        <span id="welcome-greeting">Hello, what's your name?</span>
+        <input id="name" type="text" autofocus="on" autocomplete="off" />
+      </div>
     </section>
     <section id="momentum">
-        <div id="momentum-container">
-            <div id="clock-greeting" >
-                <span id="clock"></span>
-                <span id="timely-greeting"></span>
-            </div>
-            <div id="focus-container">
-                <div id="focus">
-                  <span id="focus-question"> What is your main focus for today?</span
-                  ><br />
-                  <input id="focus-input" type="text" autocomplete="off" />
-                </div>
-            </div>
-            <div id="today-container">
-                <span id="today"></span>
-            </div>
+      <div id="momentum-container">
+        <div id="clock-greeting">
+          <span id="clock"></span>
+          <span id="timely-greeting"></span>
         </div>
-        <div id="task-container">
-            <legend id="tasks-legend">Today</legend>
-            <ul id="todo-list">
-            </ul>
-            <input type="text" id="task-input">
+        <div id="focus-no-input">
+          <span id="focus-question"> What is your main focus for today?</span
+          ><br />
+          <input id="focus-input" type="text" autocomplete="off" />
         </div>
-        <div id="icons-and-displayed-quote">
-            <i class="fa-solid fa-gear" id="quotes-settings"></i>
-            <span id="displayed-quote"></span>
-            <button id="todo-button">Todo</button>
-        </div>    
-        <div id="new-quote-container">
-            <legend id="new-quote-label">Add quotes:</legend>
-            <input type="text" id="new-quote-input" autocomplete="off">
+        <div id="focus-with-input">
+          <h1 id="focus-h1">Today</h1>
+          <div id="focus-buttons-div">
+            <input type="checkbox" id="checkbox-focus" />
+            <span id="focus-answer"></span>
+            <i class="fa-solid fa-delete-left" id="focus-delete"></i>
+          </div>
+          <h1 id="great-job">Great job!</h1>
         </div>
-        <legend id="quotes-legend">Quotes  
-            <i id="add-quote-button" class="fa-solid fa-pen-to-square"></i></legend>
-        <div id="quotes-pop-up">
-            <ul id="quotes-storage">
-            </ul>
+        <div id="today-container">
+          <span id="today"></span>
         </div>
+      </div>
+      <div id="task-container">
+        <legend id="tasks-legend">Today</legend>
+        <ul id="todo-list"></ul>
+        <input type="text" id="task-input" />
+      </div>
+      <div id="icons-and-displayed-quote">
+        <i class="fa-solid fa-gear" id="quotes-settings"></i>
+        <span id="displayed-quote"></span>
+        <button id="todo-button">Todo</button>
+      </div>
+      <div id="new-quote-container">
+        <legend id="new-quote-label">Add quotes:</legend>
+        <input type="text" id="new-quote-input" autocomplete="off" />
+      </div>
+      <legend id="quotes-legend">
+        Quotes <i id="add-quote-button" class="fa-solid fa-pen-to-square"></i>
+      </legend>
+      <div id="quotes-pop-up">
+        <ul id="quotes-storage"></ul>
+      </div>
     </section>
-</body>
+  </body>
 </html>
