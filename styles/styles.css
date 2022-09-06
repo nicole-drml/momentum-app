@@ -16,23 +16,23 @@ body {
   color: rgb(255, 255, 255);
 }
 
-#welcome {
+#welcome-section {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
 }
-#welcome #container {
+#welcome-section #welcome-container {
   display: flex;
   flex-direction: column;
 }
-#welcome #container #hello {
+#welcome-section #welcome-container #welcome-greeting {
   align-self: center;
   font-size: 2em;
   opacity: 1;
 }
-#welcome #container #name {
+#welcome-section #welcome-container #name {
   align-self: center;
   text-align: center;
   background: none;
@@ -51,40 +51,41 @@ body {
   grid-template-rows: repeat(5, 1fr);
   height: 100%;
   width: 100%;
+  visibility: hidden;
 }
-#momentum #container2 {
+#momentum #momentum-container {
   text-align: center;
   grid-row: 3/6;
   margin-top: -60px;
 }
-#momentum #container2 #clock-greeting #clock {
+#momentum #momentum-container #clock-greeting #clock {
   font-size: 1050%;
   font-weight: 500;
   letter-spacing: -5px;
 }
-#momentum #container2 #clock-greeting #greeting-text {
+#momentum #momentum-container #clock-greeting #timely-greeting {
   display: block;
   font-size: 3rem;
   font-weight: 500;
   margin-top: -10px;
-  white-space: nowrap;
   width: 100%;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
 }
-#momentum #container2 #focus-container {
+#momentum #momentum-container #focus-container {
   margin-top: 25px;
 }
-#momentum #container2 #focus-container #focus {
+#momentum #momentum-container #focus-container #focus {
   margin-top: 20px;
 }
-#momentum #container2 #focus-container #focus #focus-question {
+#momentum #momentum-container #focus-container #focus #focus-question {
   font-size: 2rem;
   font-weight: 400;
   letter-spacing: -0.5px;
 }
-#momentum #container2 #focus-container #focus #focus-input {
+#momentum #momentum-container #focus-container #focus #focus-input {
   background: none;
   outline: none;
   border: none;
@@ -113,8 +114,10 @@ body {
   font-size: 40px;
   line-height: 60px;
   max-width: 70%;
-  white-space: nowrap;
+  overflow: hidden;
+  white-space: pre;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .focus-delete {
@@ -258,7 +261,6 @@ body {
   margin-left: 25px;
   color: rgba(240, 248, 255, 0.5);
   font-size: larger;
-  display: none;
   transform: rotate(0deg);
   transition-duration: 1000ms;
 }

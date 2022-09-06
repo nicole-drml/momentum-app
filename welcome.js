@@ -1,20 +1,21 @@
-import { getTime, time, timelyGreet } from "./momentum.js";
+import { getTime, timelyGreet } from "./momentum.js";
 import { quotesSettings } from "./quotes.js";
 
 let displayedQuote = document.getElementById("displayed-quote");
 
+const momentumContents = document.getElementById("momentum");
 const toDoBtn = document.getElementById("todo-button");
 
 let userName = localStorage.getItem("name");
 
 const nameInput = document.getElementById("name");
-const welcome = document.getElementById("welcome");
-const greeting = document.getElementById("greeting-text");
+const welcome = document.getElementById("welcome-section");
+const greeting = document.getElementById("timely-greeting");
 
 function getUsername() {
   if (userName === null) {
-    toDoBtn.style.visibility = "hidden";
-    displayedQuote.style.visibility = "hidden";
+    //toDoBtn.style.visibility = "hidden";
+    //displayedQuote.style.visibility = "hidden";
     nameInput.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
         userName = event.target.value;
@@ -26,10 +27,11 @@ function getUsername() {
     welcome.remove();
     getTime();
     greeting.innerHTML = `Good ${timelyGreet}, ${userName}.`;
-    quotesSettings.style.display = "block";
-    toDoBtn.style.visibility = "visible";
+    //quotesSettings.style.display = "block";
+    //toDoBtn.style.visibility = "visible";
     setInterval(getTime, 1000);
-    displayedQuote.style.visibility = "visible";
+    //displayedQuote.style.visibility = "visible";
+    momentumContents.style.visibility = "visible";
   }
 }
 

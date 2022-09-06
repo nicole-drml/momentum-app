@@ -3,8 +3,9 @@
   grid-template-rows: repeat(5, 1fr);
   height: 100%;
   width: 100%;
+  visibility: hidden;
 
-  #container2 {
+  #momentum-container {
     text-align: center;
     grid-row: 3/6;
     margin-top: -60px;
@@ -16,13 +17,13 @@
         letter-spacing: -5px;
         //display: none;
       }
-      #greeting-text {
+      #timely-greeting {
         display: block;
         font-size: 3rem;
         font-weight: 500;
         margin-top: -10px;
-        white-space: nowrap;
         width: 100%;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         cursor: pointer;
@@ -75,8 +76,10 @@
   font-size: 40px;
   line-height: 60px;
   max-width: 70%;
-  white-space: nowrap;
+  overflow: hidden;
+  white-space: pre;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .focus-delete {

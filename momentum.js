@@ -6,6 +6,15 @@ const focusQuestion = document.getElementById("focus-question");
 const focusInput = document.getElementById("focus-input");
 const checkFocusStyles = document.getElementsByClassName("focus-input");
 
+
+const today = document.createElement("h1");
+const checkFocus = document.createElement("input");
+const focusAnswer = document.createElement("span");
+const deleteLeft = document.createElement("i");
+const focusBtns = document.createElement("div");
+const greatJob = document.createElement("h1");
+
+
 let time = "";
 let timelyGreet = "";
 
@@ -41,12 +50,6 @@ function getTime() {
   clock.innerHTML = time;
 }
 
-const today = document.createElement("h1");
-const checkFocus = document.createElement("input");
-const focusAnswer = document.createElement("span");
-const deleteLeft = document.createElement("i");
-const focusBtns = document.createElement("div");
-const greatJob = document.createElement("h1");
 
 function classesFocusElements() {
   today.classList.add("focus-h1");
@@ -91,6 +94,16 @@ function focusAnswered() {
 }
 focusAnswered();
 
+function checkFocusStorage() {
+  if (localStorage.checkbox === "checked") {
+    crossOutText();
+  } else {
+    focusAnswer.style.textDecoration = "none";
+    focusAnswer.style.opacity = "1";
+    greatJob.style.opacity = "0";
+  }
+}
+
 function focusContainerEvents() {
   focusContainer.addEventListener("mouseover", higherOpacity);
   focusContainer.addEventListener("mouseout", lowerOpacity);
@@ -113,7 +126,7 @@ function checkFocusEvents() {
   function getCheckValue() {
     if ((checkFocus.checked = true)) {
       localStorage.setItem("checkbox", "checked");
-      checkOut();
+      crossOutText();
     } else {
       localStorage.removeItem("checkbox");
     }
@@ -121,23 +134,12 @@ function checkFocusEvents() {
 }
 checkFocusEvents();
 
-function checkFocusStorage() {
-  if (localStorage.checkbox === "checked") {
-    checkOut();
-  } else {
-    focusAnswer.style.textDecoration = "none";
-    focusAnswer.style.opacity = "1";
-    greatJob.style.opacity = "0";
-  }
-}
-
-function checkOut() {
+function crossOutText() {
   focusAnswer.style.textDecoration = "line-through";
   focusAnswer.style.opacity = ".3";
   greatJob.style.opacity = "1";
   checkFocus.style.visibility = "hidden";
 }
-
 
 function deleteFocusEvents() {
   deleteLeft.addEventListener("click", deleteFocus);
