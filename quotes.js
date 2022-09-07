@@ -73,30 +73,12 @@ newQuoteInput.addEventListener("keypress", (event) => {
 });
 
 const displayAllQuotes = () => {
-  if (newArr === null || newArr === undefined) {
-   for (let i = 0; i < quotesArr.length; i++) {
-    const newLi = document.createElement("li");
-    newLi.classList.add("quote-new-li");
-    const quoteSpan = document.createElement("span");
-    quoteSpan.textContent = `"${quotesArr[i]}"`;
-
-    editQuoteBtn.className = "fa-solid fa-pen-nib";
-    editQuoteBtn.classList.add("edit-quote-button");
-
-    const deleteQuoteBtn = document.createElement("i");
-    deleteQuoteBtn.className = "fa-solid fa-trash";
-    deleteQuoteBtn.classList.add("delete-quote-button");
-
-    newLi.append(quoteSpan);
-    newLi.append(editQuoteBtn);
-    newLi.append(deleteQuoteBtn);
-    quotesUl.append(newLi);
-
-    console.log(`${quotesArr[i]}`)
-    }
-  } else {
     quotesUl.innerHTML = "";
-    quotesArr = newArr
+    if (newArr === null) {
+      newArr = quotesArr
+    } else {
+      quotesArr = newArr
+    }
     newArr.forEach((quote, idx) => {
       const newLi = document.createElement("li");
       newLi.classList.add("quote-new-li");
@@ -129,7 +111,6 @@ const displayAllQuotes = () => {
       });
     });
   }
-};
 displayAllQuotes();
 
 function quotesPopFunction() {

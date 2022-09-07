@@ -3,7 +3,6 @@ const toDoBtn = document.getElementById("todo-button");
 const tasksUl = document.getElementById("todo-list");
 const tasksInput = document.getElementById("task-input");
 
-
 let taskArr = [];
 let taskIdx = -1;
 
@@ -26,10 +25,9 @@ function setTasksLocalStorage() {
   localStorage.setItem("tasksArray", JSON.stringify(taskArr));
 }
 
-
 const addNewTask = (entry) => {
   taskArr.push(entry);
-  setTasksLocalStorage()
+  setTasksLocalStorage();
 };
 
 let updateTask = (updatedTask, idx) => {
@@ -39,7 +37,6 @@ let updateTask = (updatedTask, idx) => {
 const deleteTask = (idx) => {
   newTaskArr = newTaskArr.filter((_, index) => index !== idx);
 };
-
 
 tasksInput.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
@@ -51,72 +48,48 @@ tasksInput.addEventListener("keypress", (event) => {
     }
     tasksInput.value = "";
     displayTaskList();
-    setTasksLocalStorage()
+    setTasksLocalStorage();
   }
 });
 
 const displayTaskList = () => {
-  if ( newTaskArr === null || newTaskArr === undefined ) {
-    for (let i = 0; i < taskArr.length; i++) {
-      const newTaskLi = document.createElement("li");
-      newTaskLi.classList.add("new-task-li");
-    
-      const taskCheckbox = document.createElement("input");
-      taskCheckbox.type = "checkbox";
-      taskCheckbox.classList.add("checkbox-input");
-      taskCheckbox.addEventListener("change", checkTaskBox);
-    
-      const newTaskContent = document.createElement("span");
-      newTaskContent.textContent = task;
-      newTaskContent.classList.add("new-task-span");
-    
-      const taskBtns = document.createElement("div");
-      newTaskContent.classList.add("task-buttons");
-    
-      const editTaskBtn = document.createElement("i");
-      editTaskBtn.className = "fa-solid fa-pen-nib";
-      editTaskBtn.classList.add("edit-task-button");
-    
-      const deleteTaskBtn = document.createElement("i");
-      deleteTaskBtn.className = "fa-solid fa-eraser";
-      deleteTaskBtn.classList.add("delete-task-button");
-      appendTaskElements();
-  }
-} else {
   tasksUl.innerHTML = "";
-  taskArr = newTaskArr 
+  if (newTaskArr === null) {
+    newTaskArr = taskArr;
+  } else {
+    taskArr = newTaskArr;
+  }
   newTaskArr.forEach((task, idx) => {
     const newTaskLi = document.createElement("li");
     newTaskLi.classList.add("new-task-li");
-  
+
     const taskCheckbox = document.createElement("input");
     taskCheckbox.type = "checkbox";
     taskCheckbox.classList.add("checkbox-input");
     taskCheckbox.addEventListener("change", checkTaskBox);
-  
+
     const newTaskContent = document.createElement("span");
     newTaskContent.textContent = task;
     newTaskContent.classList.add("new-task-span");
-  
+
     const taskBtns = document.createElement("div");
     newTaskContent.classList.add("task-buttons");
-  
+
     const editTaskBtn = document.createElement("i");
     editTaskBtn.className = "fa-solid fa-pen-nib";
     editTaskBtn.classList.add("edit-task-button");
-  
+
     const deleteTaskBtn = document.createElement("i");
     deleteTaskBtn.className = "fa-solid fa-eraser";
     deleteTaskBtn.classList.add("delete-task-button");
-   
 
-taskBtns.append(editTaskBtn);
-taskBtns.append(deleteTaskBtn);
-newTaskLi.append(taskCheckbox);
-newTaskLi.append(newTaskContent);
-newTaskLi.append(taskBtns);
+    taskBtns.append(editTaskBtn);
+    taskBtns.append(deleteTaskBtn);
+    newTaskLi.append(taskCheckbox);
+    newTaskLi.append(newTaskContent);
+    newTaskLi.append(taskBtns);
 
-tasksUl.append(newTaskLi);
+    tasksUl.append(newTaskLi);
 
     editTaskBtn.addEventListener("click", () => {
       taskIdx = idx;
@@ -126,7 +99,7 @@ tasksUl.append(newTaskLi);
     deleteTaskBtn.addEventListener("click", () => {
       deleteTask(idx);
       displayTaskList();
-      setTasksLocalStorage()
+      setTasksLocalStorage();
     });
 
     function checkTaskBox() {
@@ -140,7 +113,6 @@ tasksUl.append(newTaskLi);
     }
     checkTaskBox();
   });
-}
 };
 displayTaskList();
 
