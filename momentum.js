@@ -70,17 +70,6 @@ function crossOutText() {
   checkboxFocus.style.visibility = "hidden";
 }
 
-function checkboxFocusStorage() {
-  if (localStorage.focusCheckbox === "checked") {
-    crossOutText();
-  } else {
-    focusAnswer.style.textDecoration = "none";
-    focusAnswer.style.opacity = "1";
-    greatJob.style.opacity = "0";
-  }
-}
-checkboxFocusStorage();
-
 function checkboxFocusEvents() {
   checkboxFocus.addEventListener("change", getCheckValue);
 
@@ -88,8 +77,6 @@ function checkboxFocusEvents() {
     if ((checkboxFocus.checked = true)) {
       localStorage.setItem("focusCheckbox", "checked");
       crossOutText();
-    } else {
-      localStorage.removeItem("focusCheckbox");
     }
   }
 }

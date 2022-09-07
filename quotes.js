@@ -9,9 +9,13 @@ let quotesArr = [
 ];
 
 let quoteIdx = -1;
+let randomNum = "";
 let retrievedArr = localStorage.getItem("quotesArray");
 let newArr = JSON.parse(retrievedArr);
-let randomNum = "";
+
+function setQuotesLocalStorage() {
+  localStorage.setItem("quotesArray", JSON.stringify(quotesArr));
+}
 
 const quotesUl = document.querySelector("#quotes-ul");
 const quotesSettings = document.querySelector("#quotes-settings");
@@ -128,10 +132,6 @@ function quotesPopFunction() {
       quotesSettings.style.color = "rgb(240, 248, 255, 0.9)";
     }
   }
-}
-
-function setQuotesLocalStorage() {
-  localStorage.setItem("quotesArray", JSON.stringify(quotesArr));
 }
 
 export { quotesPopFunction, toggleWriteNewQuote };
