@@ -21,7 +21,7 @@ const addQuoteContainer = document.querySelector("#new-quote-container");
 const addQuoteButton = document.querySelector("#add-quote-button");
 const quotesPopUp = document.querySelector("#quotes-pop-up");
 
-const editQuoteBtn = document.createElement("i");
+
 function randomQuoteDisplay() {
   if (newArr === null || newArr === undefined) {
     randomNum = Math.floor(Math.random() * quotesArr.length);
@@ -30,7 +30,6 @@ function randomQuoteDisplay() {
     randomNum = Math.floor(Math.random() * newArr.length);
     displayedQuote.innerHTML = `"${newArr[randomNum]}"`;
   }
-  console.log(quotesArr[2]);
 }
 randomQuoteDisplay();
 

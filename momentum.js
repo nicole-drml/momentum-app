@@ -71,7 +71,7 @@ function crossOutText() {
 }
 
 function checkboxFocusStorage() {
-  if (localStorage.checkbox === "checked") {
+  if (localStorage.focusCheckbox === "checked") {
     crossOutText();
   } else {
     focusAnswer.style.textDecoration = "none";
