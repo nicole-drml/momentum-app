@@ -1,22 +1,17 @@
-import { getUsername} from "./welcome.js";
+import { getUsername } from "./welcome.js";
 import { clearLocalName } from "./momentum.js";
 import {
-  displayQuoteFunction,
-  quotesContainerFunction,
   quotesPopFunction,
-  addQuoteFunction,
+  toggleWriteNewQuote,
 } from "./quotes.js";
 
 import { showCheckListFunction } from "./check-list.js";
 
-
 quotesPopFunction();
 getUsername();
-displayQuoteFunction();
-quotesContainerFunction();
-addQuoteFunction();
 clearLocalName();
-showCheckListFunction()
+showCheckListFunction();
+toggleWriteNewQuote();
 
 console.log(localStorage);
 //  window.location.reload()

@@ -37,7 +37,7 @@
     background: rgb(0, 0, 0, 0.6);
     outline: none;
     border: none;
-    color: white;
+    color: rgb(255, 255, 255, 0.8);
     font-size: 1rem;
     margin-bottom: 10px;
     padding: 5px;
@@ -53,14 +53,14 @@
       list-style-type: none;
     }
   
-    .fa-pen-nib,
-    .fa-eraser {
+    .edit-task-button,
+    .delete-task-button {
       margin-left: 10px;
       color: rgb(240, 248, 255, 0.5);
     }
 
-    .fa-pen-nib:hover,
-    .fa-eraser:hover {
+    .edit-task-button:hover,
+    .delete-task-button:hover {
       cursor: pointer;
       color: rgb(240, 248, 255, 0.9);
     }

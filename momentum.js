@@ -3,15 +3,12 @@ import { greeting, userName } from "./welcome.js";
 let focus = localStorage.getItem("focus");
 
 const focusNoInput = document.querySelector("#focus-no-input");
-const focusQuestion = document.querySelector("#focus-question");
 const focusInput = document.querySelector("#focus-input");
-
 
 const focusWithInput = document.querySelector("#focus-with-input");
 const checkboxFocus = document.querySelector("#checkbox-focus");
 const focusAnswer = document.querySelector("#focus-answer");
 const deleteLeft = document.querySelector("#focus-delete");
-const focusBtns = document.querySelector("#focus-buttons-div");
 const greatJob = document.querySelector("#great-job");
 
 let time = "";
@@ -61,12 +58,10 @@ function focusAnswered() {
   } else {
     focusNoInput.remove();
     focusAnswer.innerHTML = `${focus}`;
-    focusWithInput.style.display = "block" ;
+    focusWithInput.style.display = "block";
   }
 }
-focusAnswered()
-
-
+focusAnswered();
 
 function crossOutText() {
   focusAnswer.style.textDecoration = "line-through";
@@ -84,7 +79,7 @@ function checkboxFocusStorage() {
     greatJob.style.opacity = "0";
   }
 }
-checkboxFocusStorage() 
+checkboxFocusStorage();
 
 function checkboxFocusEvents() {
   checkboxFocus.addEventListener("change", getCheckValue);
@@ -124,7 +119,6 @@ function deleteFocusEvents() {
 deleteFocusEvents();
 
 function clearLocalName() {
-
   greeting.addEventListener("click", clearLocalStorage);
   function clearLocalStorage() {
     localStorage.clear();
