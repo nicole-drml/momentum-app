@@ -11,7 +11,7 @@ let quotesArr = [
 let quoteIdx = -1;
 let retrievedArr = localStorage.getItem("quotesArray");
 let newArr = JSON.parse(retrievedArr);
-let randomNum = ''
+let randomNum = "";
 
 const quotesUl = document.querySelector("#quotes-ul");
 const quotesSettings = document.querySelector("#quotes-settings");
@@ -28,12 +28,11 @@ function randomQuoteDisplay() {
     displayedQuote.innerHTML = `"${quotesArr[randomNum]}"`;
   } else {
     randomNum = Math.floor(Math.random() * newArr.length);
-  displayedQuote.innerHTML = `"${newArr[randomNum]}"`;
+    displayedQuote.innerHTML = `"${newArr[randomNum]}"`;
   }
-  console.log(quotesArr[2])
+  console.log(quotesArr[2]);
 }
 randomQuoteDisplay();
-
 
 function toggleWriteNewQuote() {
   addQuoteButton.addEventListener("click", newQuotePop);
@@ -68,49 +67,49 @@ newQuoteInput.addEventListener("keypress", (event) => {
     }
     newQuoteInput.value = "";
     displayAllQuotes();
-    setQuotesLocalStorage() 
+    setQuotesLocalStorage();
   }
 });
 
 const displayAllQuotes = () => {
-    quotesUl.innerHTML = "";
-    if (newArr === null) {
-      newArr = quotesArr
-    } else {
-      quotesArr = newArr
-    }
-    newArr.forEach((quote, idx) => {
-      const newLi = document.createElement("li");
-      newLi.classList.add("quote-new-li");
-
-      const quoteSpan = document.createElement("span");
-      quoteSpan.textContent = '"' + quote + '"';
-
-      const editQuoteBtn = document.createElement("i");
-      editQuoteBtn.className = "fa-solid fa-pen-nib";
-      editQuoteBtn.classList.add("edit-quote-button");
-
-      const deleteQuoteBtn = document.createElement("i");
-      deleteQuoteBtn.className = "fa-solid fa-trash";
-      deleteQuoteBtn.classList.add("delete-quote-button");
-
-      newLi.append(quoteSpan);
-      newLi.append(editQuoteBtn);
-      newLi.append(deleteQuoteBtn);
-      quotesUl.append(newLi);
-
-      deleteQuoteBtn.addEventListener("click", () => {
-        deleteQuote(idx);
-        displayAllQuotes();
-        setQuotesLocalStorage() 
-      });
-
-      editQuoteBtn.addEventListener("click", () => {
-        quoteIdx = idx;
-        newQuoteInput.textContent = quoteIdx
-      });
-    });
+  quotesUl.innerHTML = "";
+  if (newArr === null) {
+    newArr = quotesArr;
+  } else {
+    quotesArr = newArr;
   }
+  newArr.forEach((quote, idx) => {
+    const newLi = document.createElement("li");
+    newLi.classList.add("quote-new-li");
+
+    const quoteSpan = document.createElement("span");
+    quoteSpan.textContent = '"' + quote + '"';
+
+    const editQuoteBtn = document.createElement("i");
+    editQuoteBtn.className = "fa-solid fa-pen-nib";
+    editQuoteBtn.classList.add("edit-quote-button");
+
+    const deleteQuoteBtn = document.createElement("i");
+    deleteQuoteBtn.className = "fa-solid fa-trash";
+    deleteQuoteBtn.classList.add("delete-quote-button");
+
+    newLi.append(quoteSpan);
+    newLi.append(editQuoteBtn);
+    newLi.append(deleteQuoteBtn);
+    quotesUl.append(newLi);
+
+    deleteQuoteBtn.addEventListener("click", () => {
+      deleteQuote(idx);
+      displayAllQuotes();
+      setQuotesLocalStorage();
+    });
+
+    editQuoteBtn.addEventListener("click", () => {
+      quoteIdx = idx;
+      newQuoteInput.textContent = quoteIdx;
+    });
+  });
+};
 displayAllQuotes();
 
 function quotesPopFunction() {

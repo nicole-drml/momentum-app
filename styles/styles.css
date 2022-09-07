@@ -315,9 +315,9 @@ body {
 .fa-pen-to-square {
   position: absolute;
   right: 0;
-  top: 0;
-  margin-right: 5px;
-  margin-top: 5px;
+  top: 0.5;
+  margin-right: 6px;
+  margin-top: 0.5px;
   background: transparent;
   outline: none;
   border: none;
